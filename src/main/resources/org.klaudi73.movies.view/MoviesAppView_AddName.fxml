@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.klaudi73.movies.controller.MoviesAppAddNameController">
+   <children>
+      <MenuBar layoutX="10.0" layoutY="22.0" prefHeight="32.0" prefWidth="710.0">
+        <menus>
+          <Menu fx:id="mnuFile" mnemonicParsing="false" text="File">
+            <items>
+                  <MenuItem fx:id="mnuOpen" mnemonicParsing="false" onAction="#launchOpen" text="Open" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+              <MenuItem fx:id="mnuClose" mnemonicParsing="false" onAction="#launchClose" text="Close" />
+            </items>
+          </Menu>
+          <Menu fx:id="mnuEdit" mnemonicParsing="false" text="Edit">
+            <items>
+                  <MenuItem fx:id="mnuAdd" mnemonicParsing="false" onAction="#launchAdd" text="Add" />
+              <MenuItem fx:id="mnuDelete" mnemonicParsing="false" onAction="#launchDelete" text="Delete" />
+            </items>
+          </Menu>
+            <Menu fx:id="mnuView" mnemonicParsing="false" text="View">
+              <items>
+                  <MenuItem fx:id="mnuFind" mnemonicParsing="false" onAction="#launchFind" text="Find" />
+                <MenuItem fx:id="mnuView1" mnemonicParsing="false" onAction="#launchView" text="View" />
+              </items>
+            </Menu>
+            <Menu fx:id="mnuImport" mnemonicParsing="false" text="Import">
+              <items>
+                <MenuItem fx:id="mnuImportIMDB" mnemonicParsing="false" onAction="#launchImportFromIMDB" text="Import from IMDB" />
+              </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+      <MenuBar layoutX="720.0" layoutY="22.0" prefHeight="32.0" prefWidth="70.0">
+        <menus>
+          <Menu fx:id="mnuHelp" mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem fx:id="mnuAbout" mnemonicParsing="false" onAction="#launchAbout" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Label fx:id="lblPerson" layoutX="46.0" layoutY="87.0" text="Person:" />
+      <TextField fx:id="tfPerson" editable="false" focusTraversable="false" layoutX="111.0" layoutY="83.0" promptText="Person" />
+      <Label fx:id="lblBirthYear" layoutX="293.0" layoutY="87.0" text="Birth Year:" />
+      <TextField fx:id="tfBirthYear" editable="false" focusTraversable="false" layoutX="358.0" layoutY="83.0" promptText="Birth Year" />
+      <Label fx:id="lblDeathYear" layoutX="541.0" layoutY="87.0" text="Death Year:" />
+      <TextField fx:id="tfDeathYear" editable="false" focusTraversable="false" layoutX="606.0" layoutY="83.0" promptText="Death Year" />
+      <Label fx:id="lblProfession01" layoutX="46.0" layoutY="144.0" text="Profession:" />
+      <TextField fx:id="tfProfession01" editable="false" focusTraversable="false" layoutX="111.0" layoutY="140.0" promptText="Profession" />
+      <Label fx:id="lblProfession02" layoutX="294.0" layoutY="144.0" text="Profession:" />
+      <TextField fx:id="tfProfession02" editable="false" focusTraversable="false" layoutX="359.0" layoutY="140.0" promptText="Profession" />
+      <Label fx:id="lblProfession03" layoutX="541.0" layoutY="144.0" text="Profession:" />
+      <TextField fx:id="tfProfession03" editable="false" focusTraversable="false" layoutX="606.0" layoutY="140.0" promptText="Profession" />
+      <Label fx:id="lblTitle01" layoutX="46.0" layoutY="197.0" text="Title:" />
+      <TextField fx:id="tfTitle01" editable="false" focusTraversable="false" layoutX="111.0" layoutY="193.0" promptText="Title" />
+      <Label fx:id="lblTitle02" layoutX="293.0" layoutY="197.0" text="Title:" />
+      <TextField fx:id="tfTitle02" editable="false" focusTraversable="false" layoutX="358.0" layoutY="193.0" promptText="Title" />
+      <Label fx:id="lblTitle03" layoutX="541.0" layoutY="197.0" text="Title:" />
+      <TextField fx:id="tfTitle03" editable="false" focusTraversable="false" layoutX="606.0" layoutY="193.0" promptText="Title" />
+      <Label fx:id="lblOcena" layoutX="37.0" layoutY="267.0" text="Ocena (1-10):" />
+      <TextField fx:id="tfOcena" layoutX="112.0" layoutY="263.0" promptText="Ocena" />
+      <Separator layoutX="24.0" layoutY="238.0" prefHeight="3.0" prefWidth="752.0" />
+      <Label fx:id="lblOpis" layoutX="37.0" layoutY="311.0" text="Opis:" />
+      <TextArea fx:id="taOpis" layoutX="109.0" layoutY="311.0" prefHeight="115.0" prefWidth="646.0" promptText="Opis Osoby" />
+      <Button fx:id="btnAddPerson" layoutX="110.0" layoutY="541.0" mnemonicParsing="false" onMouseClicked="#launchAddPerson" text="Dodaj Osobę" />
+      <Button fx:id="btnHome" layoutX="681.0" layoutY="541.0" mnemonicParsing="false" onMouseClicked="#launchHome" text="Home" />
+      <Separator layoutX="24.0" layoutY="175.0" prefHeight="3.0" prefWidth="752.0" />
+      <Separator layoutX="24.0" layoutY="118.0" prefHeight="3.0" prefWidth="752.0" />
+   </children>
+</AnchorPane>

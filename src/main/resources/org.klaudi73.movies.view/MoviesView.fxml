@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane accessibleRole="COMBO_BOX" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.klaudi73.movies.controller.MoviesController">
+   <children>
+      <MenuBar maxWidth="1.7976931348623157E308" prefHeight="29.0" prefWidth="700.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+                  <MenuItem fx:id="m_send" mnemonicParsing="false" onAction="#sendAction" text="Send" />
+                  <MenuItem fx:id="m_save_to_file" mnemonicParsing="false" onAction="#saveToFileAction" text="Save to File" />
+                  <MenuItem fx:id="m_save_to_database" mnemonicParsing="false" onAction="#saveToDataAction" text="Save to Database" />
+                  <MenuItem fx:id="m_view_from_database" mnemonicParsing="false" onAction="#viewFromDatabase" text="View Ankieta From Database" />
+                  <MenuItem fx:id="m_clear" mnemonicParsing="false" onAction="#clearAction" text="Clear" />
+              <MenuItem fx:id="m_close" mnemonicParsing="false" onAction="#closeAction" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem fx:id="m_about" mnemonicParsing="false" onAction="#aboutAction" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Separator layoutX="8.0" layoutY="71.0" maxWidth="1.7976931348623157E308" prefHeight="3.0" prefWidth="687.0" />
+      <Separator layoutX="235.0" layoutY="71.0" maxHeight="1.7976931348623157E308" orientation="VERTICAL" prefHeight="427.0" prefWidth="0.0" AnchorPane.leftAnchor="235.0" />
+      <Separator layoutX="466.0" layoutY="71.0" maxHeight="1.7976931348623157E308" orientation="VERTICAL" prefHeight="427.0" prefWidth="0.0" AnchorPane.leftAnchor="466.0" />
+      <Label layoutX="84.0" layoutY="48.0" prefHeight="16.0" prefWidth="230.0" text="Contact" textAlignment="CENTER">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="562.0" layoutY="48.0" text="Course">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="313.0" layoutY="48.0" text="Competences">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tf_name" layoutX="28.0" layoutY="89.0" promptText="Name" />
+      <TextField fx:id="tf_last_name" layoutX="28.0" layoutY="131.0" promptText="Last name" />
+      <TextField fx:id="tf_mail" layoutX="28.0" layoutY="171.0" promptText="Mail" />
+      <TextField fx:id="tf_phone" layoutX="28.0" layoutY="209.0" promptText="Phone" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="39.0" layoutY="285.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/logo_pionowe_reaktor.png" />
+         </image>
+      </ImageView>
+      <VBox layoutX="259.0" layoutY="89.0" prefHeight="136.0" prefWidth="186.0">
+         <children>
+            <Label text="Programming languages:" />
+            <CheckBox fx:id="cb_java" mnemonicParsing="false" text="Java">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </CheckBox>
+            <CheckBox fx:id="cb_python" mnemonicParsing="false" text="Python">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </CheckBox>
+            <CheckBox fx:id="cb_other" mnemonicParsing="false" onMouseClicked="#otherAction" text="Other">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </CheckBox>
+            <TextField fx:id="tf_other" disable="true" promptText="enter the language">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </TextField>
+         </children>
+      </VBox>
+      <Label layoutX="261.0" layoutY="235.0" prefHeight="16.0" prefWidth="160.0" text="Languages:" />
+      <RadioButton fx:id="rb_basic" layoutX="261.0" layoutY="260.0" mnemonicParsing="false" text="Basic">
+         <toggleGroup>
+            <ToggleGroup fx:id="g1" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="rb_intermediate" layoutX="259.0" layoutY="285.0" mnemonicParsing="false" selected="true" text="Intermediate" toggleGroup="$g1" />
+      <RadioButton fx:id="rb_advanced" layoutX="259.0" layoutY="311.0" mnemonicParsing="false" text="Advanced" toggleGroup="$g1" />
+      <Button fx:id="btn_preview" layoutX="251.0" layoutY="409.0" mnemonicParsing="false" onMouseClicked="#preview" prefHeight="26.0" prefWidth="197.0" text="Preview" />
+      <TextArea fx:id="ta_preview" editable="false" layoutX="472.0" layoutY="202.0" prefHeight="296.0" prefWidth="222.0" />
+      <Label layoutX="472.0" layoutY="176.0" text="Preview:" />
+      <Label layoutX="472.0" layoutY="90.0" text="Course selection" />
+      <ComboBox fx:id="cmb_curses" layoutX="472.0" layoutY="109.0" prefHeight="26.0" prefWidth="222.0" promptText="expand" />
+   </children>
+</AnchorPane>

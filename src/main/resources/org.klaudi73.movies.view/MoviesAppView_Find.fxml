@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.klaudi73.movies.controller.MoviesAppFindController">
+   <children>
+      <MenuBar layoutX="10.0" layoutY="22.0" prefHeight="32.0" prefWidth="710.0">
+        <menus>
+          <Menu fx:id="mnuFile" mnemonicParsing="false" text="File">
+            <items>
+                  <MenuItem fx:id="mnuOpen" mnemonicParsing="false" onAction="#launchOpen" text="Open" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+              <MenuItem fx:id="mnuClose" mnemonicParsing="false" onAction="#launchClose" text="Close" />
+            </items>
+          </Menu>
+          <Menu fx:id="mnuEdit" mnemonicParsing="false" text="Edit">
+            <items>
+                  <MenuItem fx:id="mnuAdd" mnemonicParsing="false" onAction="#launchAdd" text="Add" />
+              <MenuItem fx:id="mnuDelete" mnemonicParsing="false" onAction="#launchDelete" text="Delete" />
+            </items>
+          </Menu>
+            <Menu fx:id="mnuView" mnemonicParsing="false" text="View">
+              <items>
+                  <MenuItem fx:id="mnuFind" mnemonicParsing="false" onAction="#launchFind" text="Unspecified Action" />
+                <MenuItem fx:id="mnuView1" mnemonicParsing="false" onAction="#launchView" text="View" />
+              </items>
+            </Menu>
+            <Menu fx:id="mnuImport" mnemonicParsing="false" text="Import">
+              <items>
+                <MenuItem fx:id="mnuImportIMDB" mnemonicParsing="false" onAction="#launchImportFromIMDB" text="Import from IMDB" />
+              </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+      <MenuBar layoutX="720.0" layoutY="22.0" prefHeight="32.0" prefWidth="70.0">
+        <menus>
+          <Menu fx:id="mnuHelp" mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem fx:id="mnuAbout" mnemonicParsing="false" onAction="#launchAbout" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <TextField fx:id="tfPerson" layoutX="120.0" layoutY="80.0" promptText="Osoba" />
+      <Label alignment="CENTER_RIGHT" layoutX="83.0" layoutY="84.0" text="Osoba:" />
+      <TextField fx:id="tfTitle" layoutX="360.0" layoutY="80.0" promptText="Film/Serial" />
+      <Label alignment="CENTER_RIGHT" layoutX="301.0" layoutY="84.0" text="Film/Serial:" />
+      <Button fx:id="btnFind" layoutX="600.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#launchFind" prefWidth="60.0" text="Szukaj" />
+      <TableView fx:id="tblName" layoutX="40.0" layoutY="120.0" onMouseClicked="#launchNameSelected" prefHeight="200.0" prefWidth="720.0">
+        <columns>
+          <TableColumn fx:id="colName" prefWidth="348.0" text="Name" />
+          <TableColumn fx:id="colBirthYear" prefWidth="191.0" text="Birth Year" />
+            <TableColumn fx:id="colDeathYear" prefWidth="180.0" text="Death Year" />
+        </columns>
+      </TableView>
+      <TableView fx:id="tblTitle" layoutX="40.0" layoutY="330.0" prefHeight="200.0" prefWidth="720.0">
+         <columns>
+            <TableColumn fx:id="collTitle" prefWidth="308.0" text="Title" />
+            <TableColumn fx:id="colStartYear" minWidth="4.0" prefWidth="79.0" text="Start Year" />
+            <TableColumn fx:id="colType" prefWidth="75.0" text="Type" />
+            <TableColumn fx:id="colGenres" prefWidth="257.0" text="Genres" />
+         </columns>
+      </TableView>
+      <Button fx:id="btnAddName" layoutX="76.0" layoutY="546.0" mnemonicParsing="false" onMouseClicked="#launchAddName" text="Dodaj Osobę" />
+      <Button fx:id="btnAddTitle" layoutX="217.0" layoutY="546.0" mnemonicParsing="false" onMouseClicked="#launchAddTitle" text="Dodaj Film" />
+      <Button fx:id="btnBack" layoutX="680.0" layoutY="546.0" mnemonicParsing="false" onMouseClicked="#launchBack" text="Powrót" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.klaudi73.movies.controller.LoginController">
+   <children>
+      <TextField fx:id="tfLogin" layoutX="161.0" layoutY="97.0" prefHeight="31.0" prefWidth="256.0" promptText="Login" />
+      <PasswordField fx:id="pfPass" layoutX="161.0" layoutY="149.0" prefHeight="31.0" prefWidth="256.0" promptText="Password" />
+      <Button fx:id="btnSignIn" layoutX="63.0" layoutY="312.0" mnemonicParsing="false" onMouseClicked="#signIn" prefHeight="35.0" prefWidth="70.0" text="Sign In" />
+      <Button fx:id="btnLogin" layoutX="263.0" layoutY="312.0" mnemonicParsing="false" onMouseClicked="#login" prefHeight="35.0" prefWidth="70.0" text="Login" />
+      <Button fx:id="btnQuit" layoutX="474.0" layoutY="312.0" mnemonicParsing="false" onMouseClicked="#quitAction" prefHeight="35.0" prefWidth="70.0" text="Quit" />
+      <Label fx:id="lblLogin" focusTraversable="false" layoutX="75.0" layoutY="102.0" text="Login" />
+      <Label fx:id="lblPass" focusTraversable="false" layoutX="75.0" layoutY="154.0" text="Password" />
+      <Label fx:id="lblHello" focusTraversable="false" layoutX="237.0" layoutY="31.0" text="Witaj w bazie filmów" />
+      <TextField fx:id="tfPass" focusTraversable="false" layoutX="161.0" layoutY="149.0" prefHeight="31.0" prefWidth="256.0" promptText="Password" visible="false" />
+      <Button fx:id="btnShowPass" focusTraversable="false" layoutX="416.0" layoutY="149.0" mnemonicParsing="false" onMousePressed="#showPass" onMouseReleased="#hidePass" prefHeight="31.0" text="ShowPass" />
+   </children>
+</AnchorPane>
