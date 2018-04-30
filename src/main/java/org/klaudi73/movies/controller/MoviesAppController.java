@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import org.klaudi73.movies.Main;
 import org.klaudi73.movies.util.ImportFromIMDB;
+import org.klaudi73.movies.util.ShowAbout;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -59,7 +60,7 @@ public class MoviesAppController {
 
     @FXML
     void launchAbout(ActionEvent event) {
-
+    	ShowAbout.showAbout();
     }
 
     @FXML

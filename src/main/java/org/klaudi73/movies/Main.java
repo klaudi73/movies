@@ -2,6 +2,8 @@ package org.klaudi73.movies;
 	
 import java.util.Objects;
 
+import org.klaudi73.movies.model.Login;
+import org.klaudi73.movies.model.Persons;
 import org.klaudi73.movies.service.DataToTransferBtweenScenes;
 
 import javafx.application.Application;
@@ -17,7 +19,7 @@ import javafx.scene.control.Alert.AlertType;
 public class Main extends Application {
 	
 	private static Stage primaryStage;
-	private static DataToTransferBtweenScenes dataToTransferBtweenScenes;
+	private static DataToTransferBtweenScenes dataToTransferBtweenScenes = new DataToTransferBtweenScenes();
 	
 	public static DataToTransferBtweenScenes getDataToTransferBtweenScenes() {
 		return dataToTransferBtweenScenes;
@@ -26,7 +28,15 @@ public class Main extends Application {
 	public static void setDataToTransferBtweenScenes(DataToTransferBtweenScenes dataToTransferBtweenScenes) {
 		Main.dataToTransferBtweenScenes = dataToTransferBtweenScenes;
 	}
-
+	
+	public static void setDataToTransferBtweenScenes(Long loginId) {
+		Main.dataToTransferBtweenScenes.setLoginId(loginId);
+	}
+	
+	public static void setDataToTransferBtweenScenes(Persons person) {
+		Main.dataToTransferBtweenScenes.setPerson(person);
+	}
+	
 	public static Stage getPrimaryStage() {
 		if (Objects.isNull(primaryStage)) {
 			setPrimaryStage(primaryStage);

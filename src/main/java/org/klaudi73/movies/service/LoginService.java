@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.klaudi73.movies.Main;
 import org.klaudi73.movies.model.Login;
 import org.klaudi73.movies.util.HibernateUtil;
 
@@ -29,7 +30,8 @@ public class LoginService {
 		
 		Login loginLocal = list.get(0);
 		System.out.println("Zalogowano: " + loginLocal.getLogin());
-		
+		System.out.println("LoginId: " + loginLocal.getId());
+		Main.setDataToTransferBtweenScenes(loginLocal.getId());
 		return true;
 	}
 }

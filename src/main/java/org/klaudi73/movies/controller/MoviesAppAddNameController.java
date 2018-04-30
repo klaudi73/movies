@@ -1,5 +1,6 @@
 package org.klaudi73.movies.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -7,11 +8,14 @@ import java.util.Objects;
 import org.klaudi73.movies.Main;
 import org.klaudi73.movies.model.NameToProfession;
 import org.klaudi73.movies.model.NameToTitle;
+import org.klaudi73.movies.model.Persons;
 import org.klaudi73.movies.model.Profession;
 import org.klaudi73.movies.model.Titles;
 import org.klaudi73.movies.model.ViewPerson;
+import org.klaudi73.movies.service.AddPersonService;
 import org.klaudi73.movies.service.DataToTransferBtweenScenes;
 import org.klaudi73.movies.service.MoviesAppFindService;
+import org.klaudi73.movies.util.ShowAbout;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -19,12 +23,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 
 public class MoviesAppAddNameController {
@@ -142,7 +148,7 @@ public class MoviesAppAddNameController {
 
     @FXML
     void launchAbout(ActionEvent event) {
-
+    	ShowAbout.showAbout();
     }
 
     @FXML
@@ -152,7 +158,15 @@ public class MoviesAppAddNameController {
 
     @FXML
     void launchAddPerson(MouseEvent event) {
-
+    	personsAdd.setIdLogin(Main.getDataToTransferBtweenScenes().getLoginId());
+    	personsAdd.setDescription(taOpis.getText());
+    	personsAdd.setRating(Long.valueOf(tfOcena.getText()));
+    	AddPersonService.addPerson(personsAdd);
+    	Alert info = new Alert(AlertType.INFORMATION);
+		info.setTitle("Informacja");
+		info.setHeaderText("Dodano Osobę do bazy.");
+		info.setContentText("Dodano Osobę do bazy.");
+		info.show();
     }
 
     @FXML
@@ -171,8 +185,12 @@ public class MoviesAppAddNameController {
     }
 
     @FXML
-    void launchHome(MouseEvent event) {
-
+    void launchHome(MouseEvent event) throws IOException {
+    	Parent parent = FXMLLoader.load(getClass().getResource("/org.klaudi73.movies.view/MoviesAppView.fxml"));
+		Scene scene = new Scene(parent);
+		Main.getPrimaryStage().setTitle("Movies Application");
+		Main.getPrimaryStage().show();
+		Main.getPrimaryStage().setScene(scene);
     }
 
     @FXML
@@ -193,34 +211,48 @@ public class MoviesAppAddNameController {
     private void setValues() {
     	System.out.println("To jest po pokazaniu okna Add Name, " + nConst);
     	MoviesAppFindService moviesAppFindService = new MoviesAppFindService();
+    	
+    	personsAdd.setNconst(nConst);
     	List<ViewPerson> persons = moviesAppFindService.filterPersonNConst(nConst);
     	System.out.println(persons);
     	ViewPerson person = persons.get(0);
-    	tfPerson.setText(person.getName());
-    	tfBirthYear.setText(person.getBirthYear().toString());
-    	tfDeathYear.setText(person.getDeathYear().toString());
+    	if (!Objects.isNull(person.getName())) {
+    		tfPerson.setText(person.getName());
+    		personsAdd.setPrimaryName(person.getName());
+    	}
+    	if (!Objects.isNull(person.getBirthYear())) {
+    		tfBirthYear.setText(person.getBirthYear().toString());
+    		personsAdd.setBirthYear(person.getBirthYear());
+    	}
+    	if (!Objects.isNull(person.getDeathYear())) {
+    		tfDeathYear.setText(person.getDeathYear().toString());
+    		personsAdd.setDeathYear(person.getDeathYear());
+    	}
     	
     	List<NameToProfession> nameToProfessions = moviesAppFindService.getProfessions(nConst);
-    	List<Profession> listaProf = moviesAppFindService.getProfessionNames();
-    	List<String> professions = new ArrayList<String>();
+    	if (!nameToProfessions.isEmpty()) {
+    		List<Profession> listaProf = moviesAppFindService.getProfessionNames();
+    		List<String> professions = new ArrayList<String>();
     	
-    	for (int i = 0; i < nameToProfessions.size(); i++) {
-    		for (int j = 0; j < listaProf.size(); j++) {
-    			if (nameToProfessions.get(i).getId() == listaProf.get(j).getId() ) {
-    				professions.add(listaProf.get(j).getProfession());
-    			}
-    		}
-		}
-    	if (!Objects.isNull(professions.get(0))) {
-    		tfProfession01.setText(professions.get(0));
-    	}
-    	if (!Objects.isNull(professions.get(1))) {
-    		tfProfession02.setText(professions.get(1));
-    	}
-    	if (!Objects.isNull(professions.get(2))) {
-    		tfProfession03.setText(professions.get(2));
-    	}
-    	
+	    	for (int i = 0; i < nameToProfessions.size(); i++) {
+	    		for (int j = 0; j < listaProf.size(); j++) {
+	    			if (nameToProfessions.get(i).getId() == listaProf.get(j).getId() ) {
+	    				professions.add(listaProf.get(j).getProfession());
+	    			}
+	    		}
+			}
+	    	if (!professions.isEmpty()) {
+		    	if (!Objects.isNull(professions.get(0))) {
+		    		tfProfession01.setText(professions.get(0));
+		    	}
+		    	if (!Objects.isNull(professions.get(1))) {
+		    		tfProfession02.setText(professions.get(1));
+		    	}
+		    	if (!Objects.isNull(professions.get(2))) {
+		    		tfProfession03.setText(professions.get(2));
+		    	}
+	    	}
+    	}	
     	List<NameToTitle> titlesToName = moviesAppFindService.getNameToTitle(nConst);
     	List<Titles> titles = new ArrayList<Titles>();
     	
@@ -241,6 +273,7 @@ public class MoviesAppAddNameController {
     }
     
     public static String nConst = "";
+    public static Persons personsAdd = new Persons();
     
     public void initialize() {
 		//String nConst = (String) this.scene.getUserData();

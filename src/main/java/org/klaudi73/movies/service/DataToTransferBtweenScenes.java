@@ -1,8 +1,13 @@
 package org.klaudi73.movies.service;
 
+import org.klaudi73.movies.model.Login;
+import org.klaudi73.movies.model.Persons;
+
 public class DataToTransferBtweenScenes {
 	private String data;
-
+	private Persons person;
+	private Long loginId;
+	
 	public DataToTransferBtweenScenes() {
 		super();
 	}
@@ -10,6 +15,16 @@ public class DataToTransferBtweenScenes {
 	public DataToTransferBtweenScenes(String data) {
 		super();
 		this.data = data;
+	}
+	
+	public DataToTransferBtweenScenes(Persons person) {
+		super();
+		this.person = person;
+	}
+
+	public DataToTransferBtweenScenes(Long loginId) {
+		super();
+		this.loginId = loginId;
 	}
 
 	public String getData() {
@@ -19,36 +34,21 @@ public class DataToTransferBtweenScenes {
 	public void setData(String data) {
 		this.data = data;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((data == null) ? 0 : data.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		DataToTransferBtweenScenes other = (DataToTransferBtweenScenes) obj;
-		if (data == null) {
-			if (other.data != null)
-				return false;
-		} else if (!data.equals(other.data))
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "DataToTransferBtweenScenes [data=" + data + "]";
-	}
 	
-	
+	public Persons getPerson() {
+		return person;
+	}
+
+	public void setPerson(Persons person) {
+		this.person = person;
+	}
+
+	public Long getLoginId() {
+		return loginId;
+	}
+
+	public void setLoginId(Long loginId) {
+		this.loginId = loginId;
+	}
+
 }

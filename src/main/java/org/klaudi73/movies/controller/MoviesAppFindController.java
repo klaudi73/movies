@@ -15,6 +15,7 @@ import org.klaudi73.movies.model.ViewNameTitles;
 import org.klaudi73.movies.service.DataToTransferBtweenScenes;
 import org.klaudi73.movies.service.MoviesAppFindService;
 import org.klaudi73.movies.util.HibernateUtil;
+import org.klaudi73.movies.util.ShowAbout;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -121,7 +122,7 @@ public class MoviesAppFindController {
 
     @FXML
     void launchAbout(ActionEvent event) {
-
+    	ShowAbout.showAbout();
     }
 
     @FXML
