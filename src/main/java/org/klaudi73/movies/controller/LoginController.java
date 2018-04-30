@@ -4,13 +4,12 @@ import java.io.IOException;
 
 import org.klaudi73.movies.Main;
 import org.klaudi73.movies.service.LoginService;
+import org.klaudi73.movies.util.ShowInformation;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -79,11 +78,7 @@ public class LoginController {
     		Main.getPrimaryStage().setScene(scene);
     		
     	} else {
-    		Alert error = new Alert(AlertType.ERROR);
-    		error.setHeaderText("Error");
-    		error.setContentText("Wrong login or password!");
-    		error.setTitle("Login unsuccessfull");
-    		error.show();
+    		ShowInformation.showError("login");
     	}
     }
     

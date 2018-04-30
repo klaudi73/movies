@@ -2,31 +2,19 @@ package org.klaudi73.movies.util;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.lang.management.GarbageCollectorMXBean;
-import java.sql.Time;
-import java.time.Clock;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.ExistsSubqueryExpression;
-import org.hibernate.type.BlobType;
 import org.klaudi73.movies.model.NameToProfession;
 import org.klaudi73.movies.model.NameToTitle;
 import org.klaudi73.movies.model.Names;
 import org.klaudi73.movies.model.Profession;
 import org.klaudi73.movies.model.Titles;
-
-import com.mysql.jdbc.Blob;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.shape.Line;
 
 public class ImportFromIMDB {
 	
@@ -48,7 +36,7 @@ public class ImportFromIMDB {
 	//List<Profession> listProfession = query.list();
 	//List<Titles> listTitles = query.list();
 	
-	@SuppressWarnings("null")
+	@SuppressWarnings({ "null", "unused", "resource" })
 	public static void importTitles() throws FileNotFoundException {
 		
 		int i=0;
@@ -57,10 +45,7 @@ public class ImportFromIMDB {
 		Transaction trx = null;
 		
 		System.out.println("\nCzytamy z pliku title.basics.tsv\n");
-		//File titlesFile = new File("/movies/src/main/resources/files/title.basics.tsv");
 		File titlesFile = new File("src\\main\\java\\org\\klaudi73\\movies\\files\\title.basics.tsv");
-		///movies/src/main/java/org/klaudi73/movies/files/title.basics.tsv
-		//src\\klaudi73\\pracownicy\\application\\employees.txt
 		
 		Scanner sc1 = new Scanner(titlesFile, "UTF-8");
 		Long counter = 0L;
@@ -92,9 +77,6 @@ public class ImportFromIMDB {
 		String listaPol[] = new String[9];
 		Query queryExists = null;
 		Query queryCheck = null;
-		
-		//List<Titles> listaTconst = new ArrayList<Titles>();
-		 
 		
 		session = HibernateUtil.getSessionFactory().openSession();
 		while(sc1.hasNextLine()) {
@@ -165,7 +147,7 @@ public class ImportFromIMDB {
 		//Titles title = new Titles(tconst, titleType, primaryTitle, originalTitle, isAdult, startYear, endYear, runtimeMinutes, genres);
 	}
 	
-	@SuppressWarnings("null")
+	@SuppressWarnings({ "null", "unused", "resource", "unchecked" })
 	public static void importNames() throws FileNotFoundException {
 		
 		int i=0;

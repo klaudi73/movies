@@ -12,6 +12,7 @@ import org.klaudi73.movies.util.HibernateUtil;
 
 public class LoginService {
 	
+	@SuppressWarnings("unchecked")
 	public boolean login(String login, String password) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction trx = session.beginTransaction();

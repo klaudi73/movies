@@ -1,6 +1,5 @@
 package org.klaudi73.movies.service;
 
-import org.klaudi73.movies.model.Login;
 import org.klaudi73.movies.model.Persons;
 
 public class DataToTransferBtweenScenes {

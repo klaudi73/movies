@@ -1,7 +1,5 @@
 package org.klaudi73.movies.model;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -12,8 +10,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "name")
 public class Names {
-
-	//nconst	primaryName	birthYear	deathYear	primaryProfession	knownForTitles
 	
 	@Id
 	@Column(name = "nconst", nullable = false, unique = true)

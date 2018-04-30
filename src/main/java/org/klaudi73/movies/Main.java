@@ -2,19 +2,15 @@ package org.klaudi73.movies;
 	
 import java.util.Objects;
 
-import org.klaudi73.movies.model.Login;
 import org.klaudi73.movies.model.Persons;
 import org.klaudi73.movies.service.DataToTransferBtweenScenes;
+import org.klaudi73.movies.util.ShowInformation;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-
-
 
 public class Main extends Application {
 	
@@ -48,11 +44,11 @@ public class Main extends Application {
 		Main.primaryStage = primaryStage;
 	}
 	
+	@SuppressWarnings("static-access")
 	@Override
 	public void start(Stage primaryStage) {
 		try {
 			this.primaryStage = primaryStage;
-			//movies/src/main/resources/org/klaudi73/movies/view/LoginView.fxml
 			Parent parent = FXMLLoader.load(getClass().getResource("/org.klaudi73.movies.view/LoginView.fxml"));
 			Scene scene = new Scene(parent);
 			scene.getStylesheets().add(getClass().getResource("/application.css").toExternalForm());
@@ -61,11 +57,12 @@ public class Main extends Application {
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
-			Alert error = new Alert(AlertType.ERROR);
-			error.setTitle("ERROR");
-			error.setHeaderText("Błąd");
-			error.setContentText(e.getMessage());
-			error.show();
+			ShowInformation.showError(e);
+			//Alert error = new Alert(AlertType.ERROR);
+			//error.setTitle("ERROR");
+			//error.setHeaderText("Błąd");
+			//error.setContentText(e.getMessage());
+			//error.show();
 		}
 	}
 	

@@ -8,7 +8,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "view_person")
 public class ViewPerson {
-	//nconst, birth_year, death_year, primary_name
 	
 	@Id
 	@Column(name = "nconst")

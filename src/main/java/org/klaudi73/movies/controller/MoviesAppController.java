@@ -4,18 +4,15 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.klaudi73.movies.Main;
-import org.klaudi73.movies.util.ImportFromIMDB;
-import org.klaudi73.movies.util.ShowAbout;
+import org.klaudi73.movies.util.ShowInformation;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.Alert.AlertType;
 
 public class MoviesAppController {
 
@@ -60,7 +57,7 @@ public class MoviesAppController {
 
     @FXML
     void launchAbout(ActionEvent event) {
-    	ShowAbout.showAbout();
+    	ShowInformation.showAbout();
     }
 
     @FXML
@@ -87,11 +84,7 @@ public class MoviesAppController {
     void launchImportFromIMDB(ActionEvent event) throws FileNotFoundException {
     	//ImportFromIMDB.importTitles();
     	//ImportFromIMDB.importNames();
-    	Alert info = new Alert(AlertType.INFORMATION);
-		info.setTitle("Informacja");
-		info.setHeaderText("Informacja");
-		info.setContentText("Wszystkie dane z bazy IMDB zostały zaimportowane");
-		info.show();
+    	ShowInformation.showImportFromIMDB();
     }
 
     @FXML

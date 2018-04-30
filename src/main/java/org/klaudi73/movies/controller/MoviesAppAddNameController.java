@@ -15,22 +15,19 @@ import org.klaudi73.movies.model.ViewPerson;
 import org.klaudi73.movies.service.AddPersonService;
 import org.klaudi73.movies.service.DataToTransferBtweenScenes;
 import org.klaudi73.movies.service.MoviesAppFindService;
-import org.klaudi73.movies.util.ShowAbout;
+import org.klaudi73.movies.util.ShowInformation;
 
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 
 public class MoviesAppAddNameController {
@@ -148,7 +145,7 @@ public class MoviesAppAddNameController {
 
     @FXML
     void launchAbout(ActionEvent event) {
-    	ShowAbout.showAbout();
+    	ShowInformation.showAbout();
     }
 
     @FXML
@@ -162,11 +159,7 @@ public class MoviesAppAddNameController {
     	personsAdd.setDescription(taOpis.getText());
     	personsAdd.setRating(Long.valueOf(tfOcena.getText()));
     	AddPersonService.addPerson(personsAdd);
-    	Alert info = new Alert(AlertType.INFORMATION);
-		info.setTitle("Informacja");
-		info.setHeaderText("Dodano Osobę do bazy.");
-		info.setContentText("Dodano Osobę do bazy.");
-		info.show();
+    	ShowInformation.showDodanoOsobeDoBazy();
     }
 
     @FXML
@@ -181,7 +174,7 @@ public class MoviesAppAddNameController {
 
     @FXML
     void launchFind(ActionEvent event) {
-
+    	
     }
 
     @FXML
@@ -195,7 +188,7 @@ public class MoviesAppAddNameController {
 
     @FXML
     void launchImportFromIMDB(ActionEvent event) {
-
+    	ShowInformation.showImportFromIMDB();
     }
 
     @FXML

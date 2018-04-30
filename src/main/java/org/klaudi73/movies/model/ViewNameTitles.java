@@ -9,7 +9,6 @@ import javax.persistence.Id;
 @Table(name = "view_name_titles")
 public class ViewNameTitles {
 
-	//primary_title, start_year, genres, title_type, end_year, is_adult, primary_name, nconst, tconst  
 	@Column(name = "primary_title", length = 1000)
 	private String title;
 	

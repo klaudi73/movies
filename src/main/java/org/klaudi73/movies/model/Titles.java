@@ -1,16 +1,11 @@
 package org.klaudi73.movies.model;
 
-import java.sql.Blob;
 import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.hibernate.type.BlobType;
-
-
 
 @Entity
 @Table(name = "titles")

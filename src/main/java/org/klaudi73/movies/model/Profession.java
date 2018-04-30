@@ -7,11 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
-import org.klaudi73.movies.util.HibernateUtil;
-
 @Entity
 @Table(name = "profession")
 public class Profession {

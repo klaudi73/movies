@@ -15,7 +15,7 @@ import org.klaudi73.movies.model.ViewNameTitles;
 import org.klaudi73.movies.service.DataToTransferBtweenScenes;
 import org.klaudi73.movies.service.MoviesAppFindService;
 import org.klaudi73.movies.util.HibernateUtil;
-import org.klaudi73.movies.util.ShowAbout;
+import org.klaudi73.movies.util.ShowInformation;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,7 +31,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 
 public class MoviesAppFindController {
@@ -122,7 +121,7 @@ public class MoviesAppFindController {
 
     @FXML
     void launchAbout(ActionEvent event) {
-    	ShowAbout.showAbout();
+    	ShowInformation.showAbout();
     }
 
     @FXML
@@ -190,7 +189,8 @@ public class MoviesAppFindController {
     	}
     }
 
-    @FXML
+    @SuppressWarnings("unchecked")
+	@FXML
     void launchFind(MouseEvent event) {
     	String person = tfPerson.getText();
     	String title = tfTitle.getText();
@@ -200,7 +200,9 @@ public class MoviesAppFindController {
     	List<ViewPerson> listPerson = new ArrayList<ViewPerson>();
     	
     	Session session = HibernateUtil.getSessionFactory().openSession(); 
+		@SuppressWarnings("unused")
 		Transaction trx = session.beginTransaction();
+		@SuppressWarnings("unused")
 		Criteria criteria = (Criteria) session.
 				createCriteria(ViewPerson.class).
 				setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
@@ -223,6 +225,7 @@ public class MoviesAppFindController {
 		}
 		if ((!Objects.isNull(title)) && (!"".equals(title))) {
 			titles = moviesAppFindService.filterTitle(title);
+			@SuppressWarnings("unused")
 			String stringNconst = ""; 
 			for (ViewNameTitles viewNameTitles : titles) {
 				String nConst = viewNameTitles.getNconst();
@@ -258,7 +261,7 @@ public class MoviesAppFindController {
 
     @FXML
     void launchImportFromIMDB(ActionEvent event) {
-
+    	ShowInformation.showImportFromIMDB();
     }
 
     @FXML

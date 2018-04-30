@@ -11,7 +11,6 @@ public class AddPersonService {
 		
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction trx = session.beginTransaction();
-		
 		session.save(person);
 		trx.commit();
 		session.close();
