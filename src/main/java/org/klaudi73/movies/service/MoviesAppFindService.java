@@ -3,14 +3,9 @@ package org.klaudi73.movies.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.lang.model.util.Elements;
-import javax.persistence.criteria.CriteriaQuery;
-
-import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.type.StringClobType;
 import org.klaudi73.movies.model.ViewPerson;
 import org.klaudi73.movies.model.ViewTitle;
 import org.klaudi73.movies.model.NameToProfession;
@@ -21,8 +16,6 @@ import org.klaudi73.movies.model.Titles;
 import org.klaudi73.movies.model.ViewNameTitles;
 import org.klaudi73.movies.service.MoviesAppFindService;
 import org.klaudi73.movies.util.HibernateUtil;
-
-import com.sun.glass.ui.View;
 
 public class MoviesAppFindService {
 	
@@ -235,12 +228,6 @@ public class MoviesAppFindService {
 				result.add(names2.getPrimaryName());
 			}
 		}
-		
-		//String primaryName = names.get(j).getNconst();
-		//System.out.println(primaryName);
-		//if (!result.contains(primaryName.toString())) {
-		//	result.add(names.get(j).getNconst());
-		//}
 		trx.commit();
 		session.close();
 		return result;

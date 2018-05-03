@@ -5,10 +5,12 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.klaudi73.movies.controller.MoviesAppAddTitleController">
@@ -50,33 +52,39 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Label fx:id="lblTitle" focusTraversable="false" layoutX="56.0" layoutY="97.0" text="Title:" />
+      <Label fx:id="lblTitle" focusTraversable="false" layoutX="40.0" layoutY="98.0" text="Title:" />
       <TextField fx:id="tfTitle" editable="false" focusTraversable="false" layoutX="121.0" layoutY="93.0" prefHeight="25.0" prefWidth="646.0" promptText="Title" />
-      <Label fx:id="lblStartYear" focusTraversable="false" layoutX="56.0" layoutY="154.0" text="Start Year:" />
-      <TextField fx:id="tfStartYear" editable="false" focusTraversable="false" layoutX="121.0" layoutY="150.0" promptText="Start Year" />
+      <Label fx:id="lblStartYear" focusTraversable="false" layoutX="39.0" layoutY="154.0" text="Start Year:" />
+      <TextField fx:id="tfStartYear" editable="false" focusTraversable="false" layoutX="121.0" layoutY="150.0" prefHeight="31.0" prefWidth="168.0" promptText="Start Year" />
       <Label fx:id="lblEndYear" focusTraversable="false" layoutX="304.0" layoutY="154.0" text="End Year:" />
-      <TextField fx:id="tfEndYear" editable="false" focusTraversable="false" layoutX="369.0" layoutY="150.0" promptText="End Year" />
+      <TextField fx:id="tfEndYear" editable="false" focusTraversable="false" layoutX="369.0" layoutY="150.0" prefHeight="31.0" prefWidth="177.0" promptText="End Year" />
       <Label fx:id="lblRuntime01" focusTraversable="false" layoutX="553.0" layoutY="154.0" text="Runtime:" />
-      <TextField fx:id="tfRuntime01" editable="false" focusTraversable="false" layoutX="617.0" layoutY="150.0" promptText="Runtime" />
-      <Label fx:id="lbltitleType" focusTraversable="false" layoutX="56.0" layoutY="211.0" text="Title Type:" />
-      <TextField fx:id="tfTitleType" editable="false" focusTraversable="false" layoutX="121.0" layoutY="207.0" promptText="Title Type" />
+      <TextField fx:id="tfRuntime01" editable="false" focusTraversable="false" layoutX="617.0" layoutY="150.0" prefHeight="31.0" prefWidth="147.0" promptText="Runtime" />
+      <Label fx:id="lbltitleType" focusTraversable="false" layoutX="38.0" layoutY="211.0" text="Title Type:" />
+      <TextField fx:id="tfTitleType" editable="false" focusTraversable="false" layoutX="121.0" layoutY="207.0" prefHeight="31.0" prefWidth="168.0" promptText="Title Type" />
       <Label fx:id="lblGenres" focusTraversable="false" layoutX="303.0" layoutY="211.0" text="Genres:" />
       <TextField fx:id="tfGenres" editable="false" focusTraversable="false" layoutX="368.0" layoutY="207.0" prefHeight="25.0" prefWidth="396.0" promptText="Genres" />
-      <Label fx:id="lblPerson01" focusTraversable="false" layoutX="56.0" layoutY="271.0" text="Person:" />
-      <TextField fx:id="tfPerson01" editable="false" focusTraversable="false" layoutX="121.0" layoutY="267.0" promptText="Person" />
+      <Label fx:id="lblPerson01" focusTraversable="false" layoutX="40.0" layoutY="271.0" text="Person:" />
+      <TextField fx:id="tfPerson01" editable="false" focusTraversable="false" layoutX="121.0" layoutY="267.0" prefHeight="31.0" prefWidth="168.0" promptText="Person" />
       <Label fx:id="lblPerson02" focusTraversable="false" layoutX="303.0" layoutY="271.0" text="Person:" />
-      <TextField fx:id="tfPerson02" editable="false" focusTraversable="false" layoutX="368.0" layoutY="267.0" promptText="Person" />
+      <TextField fx:id="tfPerson02" editable="false" focusTraversable="false" layoutX="368.0" layoutY="267.0" prefHeight="31.0" prefWidth="177.0" promptText="Person" />
       <Label fx:id="lblPerson03" focusTraversable="false" layoutX="551.0" layoutY="271.0" text="Person:" />
-      <TextField fx:id="tfPerson03" editable="false" focusTraversable="false" layoutX="616.0" layoutY="267.0" promptText="Person" />
-      <Label fx:id="lblOcena" focusTraversable="false" layoutX="47.0" layoutY="339.0" text="Ocena (1-10):" />
-      <TextField fx:id="tfOcena" layoutX="122.0" layoutY="335.0" promptText="Ocena" />
+      <TextField fx:id="tfPerson03" editable="false" focusTraversable="false" layoutX="616.0" layoutY="267.0" prefHeight="31.0" prefWidth="147.0" promptText="Person" />
+      <Label fx:id="lblOcena" focusTraversable="false" layoutX="40.0" layoutY="329.0" prefHeight="44.0" prefWidth="50.0" text="Ocena (1-10):" wrapText="true" />
+      <TextField fx:id="tfOcena" layoutX="122.0" layoutY="335.0" prefHeight="31.0" prefWidth="168.0" promptText="Ocena" />
       <Separator layoutX="34.0" layoutY="248.0" prefHeight="3.0" prefWidth="752.0" />
-      <Label fx:id="lblDescription" focusTraversable="false" layoutX="56.0" layoutY="380.0" text="Opis:" />
+      <Label fx:id="lblDescription" focusTraversable="false" layoutX="40.0" layoutY="380.0" text="Opis:" />
       <TextArea fx:id="taDescription" layoutX="121.0" layoutY="380.0" prefHeight="115.0" prefWidth="646.0" promptText="Opis Tytułu" />
       <Button fx:id="btnAddTitle" layoutX="120.0" layoutY="551.0" mnemonicParsing="false" onMouseClicked="#launchAddTitle" text="Dodaj Tytuł" />
       <Button fx:id="btnHome" layoutX="691.0" layoutY="551.0" mnemonicParsing="false" onMouseClicked="#launchHome" text="Home" />
       <Separator layoutX="34.0" layoutY="185.0" prefHeight="3.0" prefWidth="752.0" />
       <Separator layoutX="34.0" layoutY="128.0" prefHeight="3.0" prefWidth="752.0" />
       <Separator layoutX="34.0" layoutY="306.0" prefHeight="3.0" prefWidth="752.0" />
+      <RadioButton fx:id="rdViewed" layoutX="345.0" layoutY="340.0" mnemonicParsing="false" onMouseClicked="#launchViewed" selected="true" text="Obejrzany">
+         <toggleGroup>
+            <ToggleGroup fx:id="Obejrzane" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="rdNotViewed" layoutX="473.0" layoutY="341.0" mnemonicParsing="false" onMouseClicked="#launchNotViewed" text="Do Obejrzenia" toggleGroup="$Obejrzane" />
    </children>
 </AnchorPane>

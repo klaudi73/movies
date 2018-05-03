@@ -45,13 +45,19 @@ public class TitlesPriv {
 	
 	@Column(name = "description", length = 1000)
 	private String description;
+	
+	@Column(name = "viewed")
+	private Boolean viewed;
+	
+	@Column(name = "to_view")
+	private Boolean toView;
 
 	public TitlesPriv() {
 		super();
 	}
 
 	public TitlesPriv(String tconst, String name, Long startYear, Long endYear, String titleType, Long runtimeMinutes,
-			String genres, Long idLogin, Long rating, String description) {
+			String genres, Long idLogin, Long rating, String description, Boolean viewed, Boolean toView) {
 		super();
 		this.tconst = tconst;
 		this.name = name;
@@ -63,6 +69,8 @@ public class TitlesPriv {
 		this.idLogin = idLogin;
 		this.rating = rating;
 		this.description = description;
+		this.viewed = viewed;
+		this.toView = toView;
 	}
 
 	public Long getId() {
@@ -152,6 +160,22 @@ public class TitlesPriv {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	public Boolean getViewed() {
+		return viewed;
+	}
+
+	public void setViewed(Boolean viewed) {
+		this.viewed = viewed;
+	}
+
+	public Boolean getToView() {
+		return toView;
+	}
+
+	public void setToView(Boolean toView) {
+		this.toView = toView;
+	}
 
 	@Override
 	public int hashCode() {
@@ -168,6 +192,8 @@ public class TitlesPriv {
 		result = prime * result + ((startYear == null) ? 0 : startYear.hashCode());
 		result = prime * result + ((tconst == null) ? 0 : tconst.hashCode());
 		result = prime * result + ((titleType == null) ? 0 : titleType.hashCode());
+		result = prime * result + ((toView == null) ? 0 : toView.hashCode());
+		result = prime * result + ((viewed == null) ? 0 : viewed.hashCode());
 		return result;
 	}
 
@@ -235,6 +261,16 @@ public class TitlesPriv {
 				return false;
 		} else if (!titleType.equals(other.titleType))
 			return false;
+		if (toView == null) {
+			if (other.toView != null)
+				return false;
+		} else if (!toView.equals(other.toView))
+			return false;
+		if (viewed == null) {
+			if (other.viewed != null)
+				return false;
+		} else if (!viewed.equals(other.viewed))
+			return false;
 		return true;
 	}
 
@@ -243,6 +279,6 @@ public class TitlesPriv {
 		return "TitlesPriv [id=" + id + ", tconst=" + tconst + ", name=" + name + ", startYear=" + startYear
 				+ ", endYear=" + endYear + ", titleType=" + titleType + ", runtimeMinutes=" + runtimeMinutes
 				+ ", genres=" + genres + ", idLogin=" + idLogin + ", rating=" + rating + ", description=" + description
-				+ "]";
-	}	
+				+ ", viewed=" + viewed + ", toView=" + toView + "]";
+	}
 }

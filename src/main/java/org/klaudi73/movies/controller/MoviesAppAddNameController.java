@@ -13,7 +13,6 @@ import org.klaudi73.movies.model.Profession;
 import org.klaudi73.movies.model.Titles;
 import org.klaudi73.movies.model.ViewPerson;
 import org.klaudi73.movies.service.AddPersonService;
-import org.klaudi73.movies.service.DataToTransferBtweenScenes;
 import org.klaudi73.movies.service.MoviesAppFindService;
 import org.klaudi73.movies.util.ShowInformation;
 
@@ -239,43 +238,9 @@ public class MoviesAppAddNameController {
 	    		}
 			}
 	    	
-	    	//for
 	    	for (int i=0; i<professions.size(); i++) {
 				listTextField.get(i).setText(professions.get(i));
 			}
-//	    	
-//	    	if (!professions.isEmpty()) {
-//	    		int pSize = professions.size();
-//	    		switch (pSize) {
-//				case 0:
-//					
-//					break;
-//				case 1:
-//					tfProfession01.setText(professions.get(0));
-//					break;
-//				case 2:
-//					tfProfession01.setText(professions.get(0));
-//					tfProfession02.setText(professions.get(1));
-//					break;
-//				default:
-//					tfProfession01.setText(professions.get(0));
-//					tfProfession02.setText(professions.get(1));
-//					tfProfession03.setText(professions.get(2));
-//					break;
-//				}
-		    	/*
-		    	if (!Objects.isNull(professions.get(0))) {
-		    	
-		    		tfProfession01.setText(professions.get(0));
-		    	}
-		    	if (!Objects.isNull(professions.get(1))) {
-		    		tfProfession02.setText(professions.get(1));
-		    	}
-		    	if (!Objects.isNull(professions.get(2))) {
-		    		tfProfession03.setText(professions.get(2));
-		    	}
-		    	
-	    	}*/
     	}	
     	List<NameToTitle> titlesToName = moviesAppFindService.getNameToTitle(nConst);
     	List<Titles> titles = new ArrayList<Titles>();
@@ -301,9 +266,7 @@ public class MoviesAppAddNameController {
     public static List<TextField> listTextField = new ArrayList<>();
     
     public void initialize() {
-    	DataToTransferBtweenScenes dataToTransferBtweenScenes = new DataToTransferBtweenScenes();
-    	dataToTransferBtweenScenes = Main.getDataToTransferBtweenScenes();
-    	nConst = dataToTransferBtweenScenes.getData();
+    	nConst = (String) Main.getTransferData("nConst");
     	System.out.println("To jest po pokazaniu okna Add Name, " + nConst);
     	setValues();
     } 

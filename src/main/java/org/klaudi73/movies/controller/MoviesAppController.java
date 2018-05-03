@@ -38,6 +38,13 @@ public class MoviesAppController {
     private Menu mnuView;
 
     @FXML
+    private MenuItem mnuViewPersons;
+
+    @FXML
+    private MenuItem mnuViewTitles;
+
+
+    @FXML
     private MenuItem mnuFind;
 
     @FXML
@@ -60,6 +67,16 @@ public class MoviesAppController {
     	ShowInformation.showAbout();
     }
 
+    @FXML
+    void launchViewPersons(ActionEvent event) {
+
+    }
+
+    @FXML
+    void launchViewTitles(ActionEvent event) {
+
+    }
+    
     @FXML
     void launchOpen(ActionEvent event) {
 

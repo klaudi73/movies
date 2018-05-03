@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Objects;
 
 import org.klaudi73.movies.Main;
-import org.klaudi73.movies.model.Names;
 import org.klaudi73.movies.model.TitlesPriv;
 import org.klaudi73.movies.model.ViewTitle;
 import org.klaudi73.movies.service.AddTitlePrivService;
@@ -22,8 +21,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 
 public class MoviesAppAddTitleController {
@@ -138,6 +139,16 @@ public class MoviesAppAddTitleController {
 
     @FXML
     private Button btnHome;
+    
+    @FXML
+    private ToggleGroup Obejrzane;
+    
+    @FXML
+    private RadioButton rdViewed;
+
+    @FXML
+    private RadioButton rdNotViewed;
+
 
     @FXML
     void launchAbout(ActionEvent event) {
@@ -150,10 +161,22 @@ public class MoviesAppAddTitleController {
     }
 
     @FXML
+    void launchNotViewed(MouseEvent event) {
+    	
+    }
+
+    @FXML
+    void launchViewed(MouseEvent event) {
+   
+    }
+    
+    @FXML
     void launchAddTitle(MouseEvent event) {
     	titlesPrivAdd.setIdLogin((Long)(Main.getTransferData("login")));
     	titlesPrivAdd.setDescription(taDescription.getText());
     	titlesPrivAdd.setRating(Long.valueOf(tfOcena.getText()));
+    	titlesPrivAdd.setViewed(rdViewed.isSelected());
+    	titlesPrivAdd.setToView(rdNotViewed.isSelected());
     	AddTitlePrivService.addTitlePriv(titlesPrivAdd);
     	ShowInformation.showDodanoTytulDoBazy();
     }
@@ -236,11 +259,8 @@ public class MoviesAppAddTitleController {
     	listTextField.add(tfPerson03);
     	
     	List<String> listNames = moviesAppFindService.getPersonsByTitle(tConst);
-    	//Object[] listNamesFromTitles = moviesAppFindService.getPersonsByTitle(tConst).toArray();
-    	//
     	if (!listNames.isEmpty()) {
     		for (int i=0; i<listNames.size(); i++) {
-    			//String tString = listNamesFromTitles.get(i).getPrimaryName().toString();
     			String tString = new String();
     			System.out.println(listNames.get(i).toString());
     			tString = (listNames.get(i));

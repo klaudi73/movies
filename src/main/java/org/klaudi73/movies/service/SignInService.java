@@ -1,7 +1,6 @@
 package org.klaudi73.movies.service;
 
 import java.util.List;
-import java.util.Objects;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -22,7 +21,6 @@ public class SignInService {
 		System.out.println(logins);
 		trx.commit();
 		session.close();
-		//if (Objects.isNull(logins.get(0))) {
 		if (logins.size() > 0) {
 			return true;
 		} else {

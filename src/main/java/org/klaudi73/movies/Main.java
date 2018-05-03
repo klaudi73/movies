@@ -68,11 +68,6 @@ public class Main extends Application {
 		} catch(Exception e) {
 			e.printStackTrace();
 			ShowInformation.showError(e);
-			//Alert error = new Alert(AlertType.ERROR);
-			//error.setTitle("ERROR");
-			//error.setHeaderText("Błąd");
-			//error.setContentText(e.getMessage());
-			//error.show();
 		}
 	}
 	

@@ -5,20 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import org.hibernate.Criteria;
-import org.hibernate.MappingNotFoundException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.klaudi73.movies.Main;
 import org.klaudi73.movies.model.ViewPerson;
-import org.klaudi73.movies.model.NameToTitle;
 import org.klaudi73.movies.model.ViewNameTitles;
-import org.klaudi73.movies.service.DataToTransferBtweenScenes;
 import org.klaudi73.movies.service.MoviesAppFindService;
 import org.klaudi73.movies.util.HibernateUtil;
 import org.klaudi73.movies.util.ShowInformation;
-import org.w3c.dom.css.ElementCSSInlineStyle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -138,8 +133,7 @@ public class MoviesAppFindController {
     void launchAddName(MouseEvent event) throws IOException {
     	String nConst = tblName.getSelectionModel().getSelectedItem().getnConst();
     	System.out.println("To jest przed zmianą na okno Add Name, " + nConst);
-    	DataToTransferBtweenScenes dataToTransferBtweenScenes = new DataToTransferBtweenScenes(nConst);
-		Main.setDataToTransferBtweenScenes(dataToTransferBtweenScenes);
+    	Main.setTransferData("nConst", nConst);
     	Parent parent = FXMLLoader.load(getClass().getResource("/org.klaudi73.movies.view/MoviesAppView_AddName.fxml"));
 		Scene scene = new Scene(parent);
 		Main.getPrimaryStage().setTitle("Movies Application - Add Name");

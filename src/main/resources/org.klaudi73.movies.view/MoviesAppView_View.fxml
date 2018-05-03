@@ -50,11 +50,11 @@
           </Menu>
         </menus>
       </MenuBar>
-      <TextField fx:id="tfPerson" layoutX="120.0" layoutY="80.0" promptText="Osoba" />
-      <Label alignment="CENTER_RIGHT" layoutX="83.0" layoutY="84.0" text="Osoba:" />
-      <TextField fx:id="tfTitle" layoutX="360.0" layoutY="80.0" promptText="Film/Serial" />
-      <Label alignment="CENTER_RIGHT" layoutX="301.0" layoutY="84.0" text="Film/Serial:" />
-      <Button fx:id="btnFind" layoutX="600.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#launchFind" prefWidth="60.0" text="Szukaj" />
+      <TextField fx:id="tfPerson" layoutX="90.0" layoutY="80.0" promptText="Osoba" />
+      <Label alignment="CENTER_RIGHT" layoutX="40.0" layoutY="85.0" text="Osoba:" />
+      <TextField fx:id="tfTitle" layoutX="365.0" layoutY="80.0" promptText="Film/Serial" />
+      <Label alignment="CENTER_RIGHT" layoutX="287.0" layoutY="85.0" text="Film/Serial:" />
+      <Button fx:id="btnFind" layoutX="600.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#launchFind" prefHeight="31.0" prefWidth="82.0" text="Szukaj" />
       <TableView fx:id="tblName" layoutX="40.0" layoutY="120.0" onMouseClicked="#launchNameSelected" prefHeight="200.0" prefWidth="720.0">
         <columns>
           <TableColumn fx:id="colName" prefWidth="348.0" text="Name" />
