@@ -235,11 +235,15 @@ public class MoviesAppAddTitleController {
     	listTextField.add(tfPerson02);
     	listTextField.add(tfPerson03);
     	
-    	List<Names> listNames = moviesAppFindService.getPersonsByTitle(tConst);
-    	
+    	List<String> listNames = moviesAppFindService.getPersonsByTitle(tConst);
+    	//Object[] listNamesFromTitles = moviesAppFindService.getPersonsByTitle(tConst).toArray();
+    	//
     	if (!listNames.isEmpty()) {
     		for (int i=0; i<listNames.size(); i++) {
-    			String tString = listNames.get(i).getPrimaryName().toString();
+    			//String tString = listNamesFromTitles.get(i).getPrimaryName().toString();
+    			String tString = new String();
+    			System.out.println(listNames.get(i).toString());
+    			tString = (listNames.get(i));
 				listTextField.get(i).setText(tString);
 			}
     	}

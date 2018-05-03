@@ -38,6 +38,7 @@ public class ShowInformation {
 		info.setContentText("Dodano Tytuł do bazy.");
 		info.show();
 	}
+	
 	static public void showError(Exception e) {
 		Alert error = new Alert(AlertType.ERROR);
 		error.setTitle("ERROR");
@@ -56,5 +57,35 @@ public class ShowInformation {
 		}
 	}
 	
+	static public void showShortLogin() {
+		Alert errorL = new Alert(AlertType.ERROR);
+		errorL.setHeaderText("Error");
+		errorL.setContentText("Login is to short. It must contains at least 5 letters!");
+		errorL.setTitle("Login to short.");
+		errorL.show();
+	}
+	
+	static public void showLoginExists() {
+		Alert errorL = new Alert(AlertType.ERROR);
+		errorL.setHeaderText("Error");
+		errorL.setContentText("This login already exists in database. Change your login!");
+		errorL.setTitle("Login exists.");
+		errorL.show();
+	}
 
+	static public void showPasswordNotMatch() {
+		Alert errorL = new Alert(AlertType.ERROR);
+		errorL.setHeaderText("Error");
+		errorL.setContentText("Password not match. You must enter the same passwords!");
+		errorL.setTitle("Password not match.");
+		errorL.show();
+	}
+	
+	static public void showDodanoUzytkokwnikaDoBazy(String login) {
+		Alert info = new Alert(AlertType.INFORMATION);
+		info.setTitle("Informacja");
+		info.setHeaderText("Dodano Użytkownika " + login + " do bazy.");
+		info.setContentText("Dodano użytkownika do bazy.");
+		info.show();
+	}
 }

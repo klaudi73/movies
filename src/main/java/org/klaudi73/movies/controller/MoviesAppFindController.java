@@ -185,26 +185,26 @@ public class MoviesAppFindController {
     	Scene scene = btnAddTitle.getScene();
     	scene.setCursor(Cursor.WAIT);
     	if (tblTitle.getSelectionModel().getSelectedItem() != null) {
-	    	String tConst = tblTitle.getSelectionModel().getSelectedItem().getTconst();
-	    	MoviesAppFindService moviesAppFindService = new MoviesAppFindService();
-	    	List<ViewPerson> persons = moviesAppFindService.filterPersonByTitle(tConst);
-	    	ObservableList<ViewPerson> dataPersons = FXCollections.observableArrayList(persons);
-	    	tblName.setItems(null);
-			tblName.setItems(dataPersons);
+	    	//String tConst = tblTitle.getSelectionModel().getSelectedItem().getTconst();
+	    	//MoviesAppFindService moviesAppFindService = new MoviesAppFindService();
+	    	//List<ViewPerson> persons = moviesAppFindService.filterPersonByTitle(tConst);
+	    	//ObservableList<ViewPerson> dataPersons = FXCollections.observableArrayList(persons);
+	    	//tblName.setItems(null);
+			//tblName.setItems(dataPersons);
     	}
-    	//scene.setCursor(Cursor.DEFAULT);
+    	scene.setCursor(Cursor.DEFAULT);
     }
     
     @FXML
     void launchNameSelected(MouseEvent event) {
     	if (tblName.getSelectionModel().getSelectedItem() != null) {
-	    	String nConst = tblName.getSelectionModel().getSelectedItem().getnConst();
-	    	MoviesAppFindService moviesAppFindService = new MoviesAppFindService();
-	    	//List<ViewPerson> persons = moviesAppFindService.filterPersonNConst(nConst);
-	    	List<ViewNameTitles> titles = moviesAppFindService.filterTitleByName(nConst);
-	    	ObservableList<ViewNameTitles> dataTitles = FXCollections.observableArrayList(titles);
-	    	tblTitle.setItems(null);
-			tblTitle.setItems(dataTitles);
+	    	//String nConst = tblName.getSelectionModel().getSelectedItem().getnConst();
+	    	//MoviesAppFindService moviesAppFindService = new MoviesAppFindService();
+	    	////List<ViewPerson> persons = moviesAppFindService.filterPersonNConst(nConst);
+	    	//List<ViewNameTitles> titles = moviesAppFindService.filterTitleByName(nConst);
+	    	//ObservableList<ViewNameTitles> dataTitles = FXCollections.observableArrayList(titles);
+	    	//tblTitle.setItems(null);
+			//tblTitle.setItems(dataTitles);
     	}
     }
 

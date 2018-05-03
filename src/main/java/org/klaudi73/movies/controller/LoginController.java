@@ -83,8 +83,12 @@ public class LoginController {
     }
     
     @FXML
-    void signIn(MouseEvent event) {
-
+    void signIn(MouseEvent event) throws IOException {
+    	Parent parent = FXMLLoader.load(getClass().getResource("/org.klaudi73.movies.view/SignView.fxml"));
+		Scene scene = new Scene(parent);
+		Main.getPrimaryStage().setTitle("Login Movies");
+		Main.getPrimaryStage().show();
+		Main.getPrimaryStage().setScene(scene);
     }
 
     @FXML
