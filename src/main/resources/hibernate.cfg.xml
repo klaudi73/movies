@@ -23,8 +23,10 @@
 		<mapping class="org.klaudi73.movies.model.Persons" />
 		<mapping class="org.klaudi73.movies.model.Profession" />
 		<mapping class="org.klaudi73.movies.model.Titles" />
+		<mapping class="org.klaudi73.movies.model.TitlesPriv" />
 		<mapping class="org.klaudi73.movies.model.ViewPerson" />
 		<mapping class="org.klaudi73.movies.model.ViewNameTitles" />
+		<mapping class="org.klaudi73.movies.model.ViewTitle" />
 		
 	</session-factory>
 </hibernate-configuration>

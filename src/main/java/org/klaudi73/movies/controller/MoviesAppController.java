@@ -72,7 +72,7 @@ public class MoviesAppController {
 
     @FXML
     void launchClose(ActionEvent event) {
-
+    	System.exit(0);
     }
 
     @FXML

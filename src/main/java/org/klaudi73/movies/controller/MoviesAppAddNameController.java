@@ -155,7 +155,7 @@ public class MoviesAppAddNameController {
 
     @FXML
     void launchAddPerson(MouseEvent event) {
-    	personsAdd.setIdLogin(Main.getDataToTransferBtweenScenes().getLoginId());
+    	personsAdd.setIdLogin((Long)(Main.getTransferData("login")));
     	personsAdd.setDescription(taOpis.getText());
     	personsAdd.setRating(Long.valueOf(tfOcena.getText()));
     	AddPersonService.addPerson(personsAdd);
@@ -164,7 +164,7 @@ public class MoviesAppAddNameController {
 
     @FXML
     void launchClose(ActionEvent event) {
-
+    	System.exit(0);
     }
 
     @FXML
@@ -222,6 +222,10 @@ public class MoviesAppAddNameController {
     		personsAdd.setDeathYear(person.getDeathYear());
     	}
     	
+    	listTextField.add(tfProfession01);
+    	listTextField.add(tfProfession02);
+    	listTextField.add(tfProfession03);
+    	
     	List<NameToProfession> nameToProfessions = moviesAppFindService.getProfessions(nConst);
     	if (!nameToProfessions.isEmpty()) {
     		List<Profession> listaProf = moviesAppFindService.getProfessionNames();
@@ -234,8 +238,34 @@ public class MoviesAppAddNameController {
 	    			}
 	    		}
 			}
-	    	if (!professions.isEmpty()) {
+	    	
+	    	//for
+	    	for (int i=0; i<professions.size(); i++) {
+				listTextField.get(i).setText(professions.get(i));
+			}
+//	    	
+//	    	if (!professions.isEmpty()) {
+//	    		int pSize = professions.size();
+//	    		switch (pSize) {
+//				case 0:
+//					
+//					break;
+//				case 1:
+//					tfProfession01.setText(professions.get(0));
+//					break;
+//				case 2:
+//					tfProfession01.setText(professions.get(0));
+//					tfProfession02.setText(professions.get(1));
+//					break;
+//				default:
+//					tfProfession01.setText(professions.get(0));
+//					tfProfession02.setText(professions.get(1));
+//					tfProfession03.setText(professions.get(2));
+//					break;
+//				}
+		    	/*
 		    	if (!Objects.isNull(professions.get(0))) {
+		    	
 		    		tfProfession01.setText(professions.get(0));
 		    	}
 		    	if (!Objects.isNull(professions.get(1))) {
@@ -244,7 +274,8 @@ public class MoviesAppAddNameController {
 		    	if (!Objects.isNull(professions.get(2))) {
 		    		tfProfession03.setText(professions.get(2));
 		    	}
-	    	}
+		    	
+	    	}*/
     	}	
     	List<NameToTitle> titlesToName = moviesAppFindService.getNameToTitle(nConst);
     	List<Titles> titles = new ArrayList<Titles>();
@@ -267,16 +298,13 @@ public class MoviesAppAddNameController {
     
     public static String nConst = "";
     public static Persons personsAdd = new Persons();
+    public static List<TextField> listTextField = new ArrayList<>();
     
     public void initialize() {
-		//String nConst = (String) this.scene.getUserData();
-    	//String nConst = Main.getPrimaryStage().getScene().getUserData().toString();
     	DataToTransferBtweenScenes dataToTransferBtweenScenes = new DataToTransferBtweenScenes();
     	dataToTransferBtweenScenes = Main.getDataToTransferBtweenScenes();
     	nConst = dataToTransferBtweenScenes.getData();
     	System.out.println("To jest po pokazaniu okna Add Name, " + nConst);
     	setValues();
-    	//fillPersonData();
-    	//fillTitleData();
     } 
 }

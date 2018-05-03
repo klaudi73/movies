@@ -57,10 +57,8 @@ public class Names {
 			}
 		} else {
 			deathYear = null;
-		}
-		
+		}	
 	}
-
 
 	public String getNconst() {
 		return nconst;

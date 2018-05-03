@@ -32,7 +32,8 @@ public class LoginService {
 		Login loginLocal = list.get(0);
 		System.out.println("Zalogowano: " + loginLocal.getLogin());
 		System.out.println("LoginId: " + loginLocal.getId());
-		Main.setDataToTransferBtweenScenes(loginLocal.getId());
+		//Main.setDataToTransferBtweenScenes(loginLocal.getId());
+		Main.setTransferData("login", loginLocal.getId());
 		return true;
 	}
 }

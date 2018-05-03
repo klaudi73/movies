@@ -6,22 +6,26 @@ import java.util.List;
 import java.util.Objects;
 
 import org.hibernate.Criteria;
+import org.hibernate.MappingNotFoundException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.klaudi73.movies.Main;
 import org.klaudi73.movies.model.ViewPerson;
+import org.klaudi73.movies.model.NameToTitle;
 import org.klaudi73.movies.model.ViewNameTitles;
 import org.klaudi73.movies.service.DataToTransferBtweenScenes;
 import org.klaudi73.movies.service.MoviesAppFindService;
 import org.klaudi73.movies.util.HibernateUtil;
 import org.klaudi73.movies.util.ShowInformation;
+import org.w3c.dom.css.ElementCSSInlineStyle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -142,17 +146,17 @@ public class MoviesAppFindController {
 		System.out.println("To jest przed pokazaniem okna Add Name, " + nConst);
 		scene.setUserData(nConst);
 		Main.getPrimaryStage().setUserData(nConst);
-		//System.out.println(Main.getPrimaryStage().getUserData().toString());
 		Main.getPrimaryStage().show();
 		Main.getPrimaryStage().setScene(scene);
     }
     
     @FXML
     void launchAddTitle(MouseEvent event) throws IOException {
+    	String tConst = tblTitle.getSelectionModel().getSelectedItem().getTconst();
+    	Main.setTransferData("tConst", tConst);
     	Parent parent = FXMLLoader.load(getClass().getResource("/org.klaudi73.movies.view/MoviesAppView_AddTitle.fxml"));
 		Scene scene = new Scene(parent);
-		Main.getPrimaryStage().setTitle("Movies Application");
-		Main.getPrimaryStage().setUserData(tblTitle.getSelectionModel().getSelectedItem().getTconst());
+		Main.getPrimaryStage().setTitle("Movies Application - Add Title");
 		Main.getPrimaryStage().show();
 		Main.getPrimaryStage().setScene(scene);
     }
@@ -168,12 +172,27 @@ public class MoviesAppFindController {
 
     @FXML
     void launchClose(ActionEvent event) {
-
+    	System.exit(0);
     }
 
     @FXML
     void launchDelete(ActionEvent event) {
 
+    }
+    
+    @FXML
+    void launchTitleSelected(MouseEvent event) {
+    	Scene scene = btnAddTitle.getScene();
+    	scene.setCursor(Cursor.WAIT);
+    	if (tblTitle.getSelectionModel().getSelectedItem() != null) {
+	    	String tConst = tblTitle.getSelectionModel().getSelectedItem().getTconst();
+	    	MoviesAppFindService moviesAppFindService = new MoviesAppFindService();
+	    	List<ViewPerson> persons = moviesAppFindService.filterPersonByTitle(tConst);
+	    	ObservableList<ViewPerson> dataPersons = FXCollections.observableArrayList(persons);
+	    	tblName.setItems(null);
+			tblName.setItems(dataPersons);
+    	}
+    	//scene.setCursor(Cursor.DEFAULT);
     }
     
     @FXML
@@ -192,47 +211,38 @@ public class MoviesAppFindController {
     @SuppressWarnings("unchecked")
 	@FXML
     void launchFind(MouseEvent event) {
+    	
+		Scene scene = btnFind.getScene();
+		scene.setCursor(Cursor.WAIT);
+    	
     	String person = tfPerson.getText();
     	String title = tfTitle.getText();
+    	
     	
     	MoviesAppFindService moviesAppFindService = new MoviesAppFindService();
     	ObservableList<ViewNameTitles> dataTitles = null;
     	List<ViewPerson> listPerson = new ArrayList<ViewPerson>();
     	
     	Session session = HibernateUtil.getSessionFactory().openSession(); 
-		@SuppressWarnings("unused")
 		Transaction trx = session.beginTransaction();
-		@SuppressWarnings("unused")
-		Criteria criteria = (Criteria) session.
-				createCriteria(ViewPerson.class).
-				setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-    	
-    	//Session session = HibernateUtil.getSessionFactory().openSession(); 
-		//Transaction trx = session.beginTransaction();
     	
 		Query queryPerson = null;
-		//Query queryPerson = session.createQuery("from ViewActor va where va.name = :person");
-		//ueryPerson.setString("person", person);
     	List<ViewPerson> persons = moviesAppFindService.filterPerson(person);
     	ObservableList<ViewPerson> dataPersons = FXCollections.observableArrayList(persons);
-    	tblName.setItems(null);
-		tblName.setItems(dataPersons);
 		
+    	Query queryTitle = null;
+    	List<ViewNameTitles> listNameTitles = new ArrayList<>();
+    	
 		List<ViewNameTitles> titles = null;
+		
 		if ((!Objects.isNull(title) && (!Objects.isNull(person))) || 
 				("".equals(title) && "".equals(person))) {
-			titles = moviesAppFindService.filterTitle(title, person);
-		}
-		if ((!Objects.isNull(title)) && (!"".equals(title))) {
-			titles = moviesAppFindService.filterTitle(title);
-			@SuppressWarnings("unused")
-			String stringNconst = ""; 
-			for (ViewNameTitles viewNameTitles : titles) {
+			listNameTitles = moviesAppFindService.filterTitle(title, person);
+		} else if ((!Objects.isNull(title)) && (!"".equals(title))) {
+			listNameTitles = moviesAppFindService.filterTitle(title);
+			for (ViewNameTitles viewNameTitles : listNameTitles) {
 				String nConst = viewNameTitles.getNconst();
-				
-				//queryPerson = session.createQuery("from ViewPerson va where va.name = :person");
-				queryPerson = session.createQuery("from ViewPerson vp where vp.nConst = :nConst");
-				//queryPerson.setString("person", person);
+				queryPerson = session.createQuery("FROM ViewPerson vp WHERE vp.nConst = :nConst");
 				queryPerson.setString("nConst", nConst);
 				persons = queryPerson.list();
 				System.out.println(persons);
@@ -249,14 +259,39 @@ public class MoviesAppFindController {
 					}
 				}
 			} 
+		} else if (!Objects.isNull(person) && (!"".equals(person))){
+			listPerson = moviesAppFindService.filterPerson(person);
+			for (ViewPerson viewPerson : listPerson) {
+				String nConst = viewPerson.getnConst();
+				queryTitle = session.createQuery("FROM NameToTitle ntt WHERE ntt.nConst = :nConst");
+				queryTitle.setString("nConst", nConst);
+				titles = queryTitle.list();
+				System.out.println(titles);
+				for ( ViewNameTitles nameToTitle : titles) {
+					//System.out.println();
+					if (!listNameTitles.isEmpty()) {
+						if (listNameTitles.contains(nameToTitle)) {
+							//do nothing
+						} else {
+							listNameTitles.add(nameToTitle);
+						}
+					} else {
+						listNameTitles.add(nameToTitle);
+					}
+				}
+			} 
 		}
 		dataPersons = FXCollections.observableArrayList(listPerson);
 		tblName.setItems(null);
 		tblName.setItems(dataPersons);
 		
-		dataTitles = FXCollections.observableArrayList(titles);
+		dataTitles = FXCollections.observableArrayList(listNameTitles);
     	tblTitle.setItems(null);
 		tblTitle.setItems(dataTitles);
+		trx.commit();
+		session.close();
+	
+		scene.setCursor(Cursor.DEFAULT);
     }
 
     @FXML
@@ -305,6 +340,7 @@ public class MoviesAppFindController {
 	}
     
     public void initialize() {
+    	
     	setCellValue();
     	fillPersonData();
     	fillTitleData();

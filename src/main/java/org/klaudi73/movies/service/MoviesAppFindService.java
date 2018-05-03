@@ -3,12 +3,15 @@ package org.klaudi73.movies.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.klaudi73.movies.model.ViewPerson;
+import org.klaudi73.movies.model.ViewTitle;
 import org.klaudi73.movies.model.NameToProfession;
 import org.klaudi73.movies.model.NameToTitle;
+import org.klaudi73.movies.model.Names;
 import org.klaudi73.movies.model.Profession;
 import org.klaudi73.movies.model.Titles;
 import org.klaudi73.movies.model.ViewNameTitles;
@@ -17,7 +20,7 @@ import org.klaudi73.movies.util.HibernateUtil;
 
 public class MoviesAppFindService {
 	
-	private static final int SETMAXRESULTS = 100;
+	private static final int SETMAXRESULTS = 1000;
 	@SuppressWarnings("unchecked")
 	public List<ViewPerson> getAllPersons() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -48,6 +51,7 @@ public class MoviesAppFindService {
 	public List<ViewPerson> filterPerson(String person) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction trx = session.beginTransaction();
+		
 		Query query = session.createQuery("FROM ViewPerson WHERE name LIKE :person");
 		query.setString("person", "%" + person + "%");
 		query.setMaxResults(SETMAXRESULTS);
@@ -70,6 +74,20 @@ public class MoviesAppFindService {
 		trx.commit();
 		session.close();
 		return persons;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<ViewTitle> filterViewTitle(String tConst) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction trx = session.beginTransaction();
+		Query query = session.createQuery("FROM ViewTitle WHERE tConst = :tConst");
+		query.setString("tConst", tConst);
+		query.setMaxResults(SETMAXRESULTS);
+		
+		List<ViewTitle> titles = query.list();
+		trx.commit();
+		session.close();
+		return titles;
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -102,6 +120,24 @@ public class MoviesAppFindService {
 	}
 	
 	@SuppressWarnings("unchecked")
+	public List<ViewPerson> filterPersonByTitle(String tConst) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction trx = session.beginTransaction();
+		Query query = session.createQuery("FROM NameToTitle WHERE tConst = :tConst");
+		query.setString("tConst", tConst);
+		query.setMaxResults(1000);
+		List<NameToTitle> listNameToTitle = query.list();
+		List<ViewPerson> persons = new ArrayList<ViewPerson>();
+		
+		for (NameToTitle nameToTitle : listNameToTitle) {
+			persons.add((ViewPerson) filterPersonNConst(nameToTitle.getNconst()));
+		}
+		trx.commit();
+		session.close();
+		return persons;
+	}
+	
+	@SuppressWarnings("unchecked")
 	public List<ViewNameTitles> filterTitleByName(String nConst) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction trx = session.beginTransaction();
@@ -129,7 +165,7 @@ public class MoviesAppFindService {
 		return professions;
 	}
 	
-	@SuppressWarnings({ "unchecked", "unused" })
+	@SuppressWarnings({ "unchecked" })
 	public List<Profession> getProfessionNames() {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction trx = session.beginTransaction();
@@ -137,6 +173,7 @@ public class MoviesAppFindService {
     	
     	Query queryProfession = session.createQuery("FROM Profession");
     	listaProf = queryProfession.list();
+    	trx.commit();
     	return listaProf;
 	}
 	
@@ -166,6 +203,20 @@ public class MoviesAppFindService {
 		trx.commit();
 		session.close();
 		return titles.get(0);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Names> getPersonsByTitle(String tConst) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction trx = session.beginTransaction();
+		Query query = session.createQuery("FROM ViewNameTitles WHERE tConst = :tConst");
+		query.setString("tConst", tConst);
+		query.setMaxResults(3);
+		
+		List<Names> names = query.list();
+		trx.commit();
+		session.close();
+		return names;
 	}
 	
 }

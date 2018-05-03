@@ -1,5 +1,8 @@
 package org.klaudi73.movies;
 	
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 import org.klaudi73.movies.model.Persons;
@@ -16,6 +19,15 @@ public class Main extends Application {
 	
 	private static Stage primaryStage;
 	private static DataToTransferBtweenScenes dataToTransferBtweenScenes = new DataToTransferBtweenScenes();
+	private static HashMap<String, Object> transferData = new HashMap<>();
+	
+	public static void setTransferData(String name, Object value) {
+		transferData.put(name, value);
+	}
+	
+	public static Object getTransferData(String name) {
+		return transferData.get(name);
+	}
 	
 	public static DataToTransferBtweenScenes getDataToTransferBtweenScenes() {
 		return dataToTransferBtweenScenes;

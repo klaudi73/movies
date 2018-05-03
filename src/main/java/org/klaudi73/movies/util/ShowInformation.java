@@ -31,6 +31,13 @@ public class ShowInformation {
 		info.show();
 	}
 	
+	static public void showDodanoTytulDoBazy() {
+		Alert info = new Alert(AlertType.INFORMATION);
+		info.setTitle("Informacja");
+		info.setHeaderText("Dodano Tytuł do bazy.");
+		info.setContentText("Dodano Tytuł do bazy.");
+		info.show();
+	}
 	static public void showError(Exception e) {
 		Alert error = new Alert(AlertType.ERROR);
 		error.setTitle("ERROR");
