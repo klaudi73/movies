@@ -39,7 +39,6 @@ public class AddTitlePrivService {
 		System.out.println(titlesPriv);
 		
 		session.update(titlesPriv);
-		//session.saveOrUpdate(titlesPriv);
 		trx.commit();
 		session.close();
 	}

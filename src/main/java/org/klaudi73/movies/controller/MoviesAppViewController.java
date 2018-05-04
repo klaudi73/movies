@@ -1,6 +1,9 @@
 package org.klaudi73.movies.controller;
 
+import java.awt.Desktop;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -110,11 +113,11 @@ public class MoviesAppViewController {
     private TableColumn<TitlesPriv, Long> colRatingTitle;
 
     @FXML
-    private Button btnAddName;
+    private Button btnShowNameInBrowser;
 
     @FXML
-    private Button btnAddTitle;
-
+    private Button btnShowTitleInBrowser;
+    
     @FXML
     private Button btnBack;
 
@@ -129,10 +132,36 @@ public class MoviesAppViewController {
     }
 
     @FXML
-    void launchAddName(MouseEvent event) {
-    	
+    void launchShowNameInBrowser(MouseEvent event) {
+    	String link = "https://www.imdb.com/name/" + tblName.getSelectionModel().getSelectedItem().getNconst() + "/";
+    	// przykładowy link https://www.imdb.com/name/nm0000001/
+    	if(Desktop.isDesktopSupported())
+        {
+            try {
+                Desktop.getDesktop().browse(new URI(link));
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
+    @FXML
+    void launchShowTitleInBrowser(MouseEvent event) {
+    	String link = "https://www.imdb.com/title/" + tblTitle.getSelectionModel().getSelectedItem().getTconst() + "/";
+    	// przykładowy link https://www.imdb.com/title/tt0000001/
+    	if(Desktop.isDesktopSupported())
+        {
+            try {
+                Desktop.getDesktop().browse(new URI(link));
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
+        }
+    }
     @FXML
     void launchAddTitle(MouseEvent event) {
 
@@ -218,8 +247,12 @@ public class MoviesAppViewController {
     	if ("persons".equals(viewType)) {
     		tblName.setVisible(true);
     		tblName.setFocusTraversable(true);
+    		btnShowNameInBrowser.setVisible(true);
+    		btnShowNameInBrowser.setFocusTraversable(true);
     		tblTitle.setVisible(false);
     		tblTitle.setFocusTraversable(false);
+    		btnShowTitleInBrowser.setVisible(false);
+    		btnShowTitleInBrowser.setFocusTraversable(false);
     		persons = moviesAppFindService.filterPersonsByLoginId(loginId);
     		System.out.println("");
     		System.out.println(persons);
@@ -231,8 +264,13 @@ public class MoviesAppViewController {
     	} else if ("titles".equals(viewType)) {
     		tblTitle.setVisible(true);
     		tblTitle.setFocusTraversable(true);
+    		btnShowTitleInBrowser.setVisible(true);
+    		btnShowTitleInBrowser.setFocusTraversable(true);
     		tblName.setVisible(false);
     		tblName.setFocusTraversable(false);
+    		btnShowNameInBrowser.setVisible(false);
+    		btnShowNameInBrowser.setFocusTraversable(false);
+    		
     		titles = moviesAppFindService.filterTitlesByLoginId(loginId);
     		System.out.println("");
     		System.out.println(titles);
@@ -267,6 +305,5 @@ public class MoviesAppViewController {
     	loginId = (Long) Main.getTransferData("login");
     	System.out.println("To jest po pokazaniu okna View " + viewType);
     	setValues();
-    } 
-
+    }
 }

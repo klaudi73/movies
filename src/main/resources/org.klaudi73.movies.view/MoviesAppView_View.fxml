@@ -31,7 +31,12 @@
             <Menu fx:id="mnuView" mnemonicParsing="false" text="View">
               <items>
                   <MenuItem fx:id="mnuFind" mnemonicParsing="false" onAction="#launchFind" text="Find" />
-                <MenuItem fx:id="mnuView1" mnemonicParsing="false" onAction="#launchView" text="View" />
+                  <Menu mnemonicParsing="false" text="View">
+                     <items>
+                        <MenuItem fx:id="mnuViewPersons" mnemonicParsing="false" onAction="#launchViewPersons" text="View Persons" />
+                        <MenuItem fx:id="mnuViewTitles" mnemonicParsing="false" onAction="#launchViewTitles" text="View Titles" />
+                     </items>
+                  </Menu>
               </items>
             </Menu>
             <Menu fx:id="mnuImport" mnemonicParsing="false" text="Import">
@@ -72,8 +77,8 @@
             <TableColumn fx:id="colRatingTitle" prefWidth="71.0" text="Rating" />
          </columns>
       </TableView>
-      <Button fx:id="btnAddName" layoutX="76.0" layoutY="546.0" mnemonicParsing="false" onMouseClicked="#launchAddName" text="Dodaj Osobę" />
-      <Button fx:id="btnAddTitle" layoutX="217.0" layoutY="546.0" mnemonicParsing="false" onMouseClicked="#launchAddTitle" text="Dodaj Film" />
+      <Button fx:id="btnShowNameInBrowser" layoutX="76.0" layoutY="546.0" mnemonicParsing="false" onMouseClicked="#launchShowNameInBrowser" text="Pokaż Osobę w IMDB" />
+      <Button fx:id="btnShowTitleInBrowser" layoutX="268.0" layoutY="546.0" mnemonicParsing="false" onMouseClicked="#launchShowTitleInBrowser" text="Pokaż Film w IMDB" />
       <Button fx:id="btnBack" layoutX="680.0" layoutY="546.0" mnemonicParsing="false" onMouseClicked="#launchBack" text="Powrót" />
    </children>
 </AnchorPane>

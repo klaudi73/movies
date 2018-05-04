@@ -4,7 +4,6 @@ import java.util.Optional;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.util.converter.ShortStringConverter;
 import javafx.scene.control.ButtonType;
 
 public class ShowInformation {
@@ -32,6 +31,14 @@ public class ShowInformation {
 		info.setTitle("Informacja");
 		info.setHeaderText("Dodano Osobę do bazy.");
 		info.setContentText("Dodano Osobę do bazy.");
+		info.show();
+	}
+	
+	public static void showZmodyfikowanoOsobelWBazie() {
+		Alert info = new Alert(AlertType.INFORMATION);
+		info.setTitle("Informacja");
+		info.setHeaderText("Zmodyfikowano Osobę w bazie.");
+		info.setContentText("Zmodyfikowano Osobę w bazie.");
 		info.show();
 	}
 	

@@ -12,7 +12,7 @@ import org.klaudi73.movies.model.PersonsPriv;
 import org.klaudi73.movies.model.Profession;
 import org.klaudi73.movies.model.Titles;
 import org.klaudi73.movies.model.ViewPerson;
-import org.klaudi73.movies.service.AddPersonService;
+import org.klaudi73.movies.service.AddPersonsPrivService;
 import org.klaudi73.movies.service.MoviesAppFindService;
 import org.klaudi73.movies.util.ShowInformation;
 
@@ -56,7 +56,11 @@ public class MoviesAppAddNameController {
     private MenuItem mnuFind;
 
     @FXML
-    private MenuItem mnuView1;
+    private MenuItem mnuViewPersons;
+
+    @FXML
+    private MenuItem mnuViewTitles;
+
 
     @FXML
     private Menu mnuImport;
@@ -154,11 +158,24 @@ public class MoviesAppAddNameController {
 
     @FXML
     void launchAddPerson(MouseEvent event) {
-    	personsAdd.setIdLogin((Long)(Main.getTransferData("login")));
-    	personsAdd.setDescription(taOpis.getText());
-    	personsAdd.setRating(Long.valueOf(tfOcena.getText()));
-    	AddPersonService.addPerson(personsAdd);
-    	ShowInformation.showDodanoOsobeDoBazy();
+    	MoviesAppFindService moviesAppFindService = new MoviesAppFindService();
+    	personsPrivAdd.setIdLogin((Long)(Main.getTransferData("login")));
+    	personsPrivAdd.setDescription(taOpis.getText());
+    	personsPrivAdd.setRating(Long.valueOf(tfOcena.getText()));
+    	if (moviesAppFindService.existPersonsPriv(personsPrivAdd)) {
+    		Boolean decyzja = ShowInformation.showPodanaOsobaJuzIstnieje(personsPrivAdd.getName());
+    		if (decyzja) {
+    			personsPrivAdd.setId(AddPersonsPrivService.getPersonsPrivId(personsPrivAdd));
+    			System.out.println("\n" + personsPrivAdd + "\n");
+    			AddPersonsPrivService.updatePersonPriv(personsPrivAdd);
+    			ShowInformation.showZmodyfikowanoOsobelWBazie();
+    		} else {
+    			//do nothing
+    		}
+    	} else {
+    		AddPersonsPrivService.addPersonPriv(personsPrivAdd);
+        	ShowInformation.showDodanoOsobeDoBazy();
+    	}
     }
 
     @FXML
@@ -204,21 +221,21 @@ public class MoviesAppAddNameController {
     	System.out.println("To jest po pokazaniu okna Add Name, " + nConst);
     	MoviesAppFindService moviesAppFindService = new MoviesAppFindService();
     	
-    	personsAdd.setNconst(nConst);
+    	personsPrivAdd.setNconst(nConst);
     	List<ViewPerson> persons = moviesAppFindService.filterPersonNConst(nConst);
     	System.out.println(persons);
     	ViewPerson person = persons.get(0);
     	if (!Objects.isNull(person.getName())) {
     		tfPerson.setText(person.getName());
-    		personsAdd.setName(person.getName());
+    		personsPrivAdd.setName(person.getName());
     	}
     	if (!Objects.isNull(person.getBirthYear())) {
     		tfBirthYear.setText(person.getBirthYear().toString());
-    		personsAdd.setBirthYear(person.getBirthYear());
+    		personsPrivAdd.setBirthYear(person.getBirthYear());
     	}
     	if (!Objects.isNull(person.getDeathYear())) {
     		tfDeathYear.setText(person.getDeathYear().toString());
-    		personsAdd.setDeathYear(person.getDeathYear());
+    		personsPrivAdd.setDeathYear(person.getDeathYear());
     	}
     	
     	listTextField.add(tfProfession01);
@@ -262,7 +279,7 @@ public class MoviesAppAddNameController {
     }
     
     public static String nConst = "";
-    public static PersonsPriv personsAdd = new PersonsPriv();
+    public static PersonsPriv personsPrivAdd = new PersonsPriv();
     public static List<TextField> listTextField = new ArrayList<>();
     
     public void initialize() {

@@ -279,5 +279,23 @@ public class MoviesAppFindService {
 			return false;
 		}
 	}
+
+	@SuppressWarnings("unchecked")
+	public boolean existPersonsPriv(PersonsPriv personsPrivAdd) {
+		Session session = HibernateUtil.getSessionFactory().openSession(); 
+		Transaction trx = session.beginTransaction();
+    	
+		Query queryTitle = session.createQuery("FROM PersonsPriv WHERE nConst = :nConst AND idLogin = :idLogin");
+		queryTitle.setString("nConst", personsPrivAdd.getNconst());
+		queryTitle.setLong("idLogin", personsPrivAdd.getIdLogin());
+		List<PersonsPriv> personsPrivs = queryTitle.list();
+		trx.commit();
+		session.close();
+		if (personsPrivs.size() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 }

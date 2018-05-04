@@ -12,7 +12,7 @@
         <menus>
           <Menu fx:id="mnuFile" mnemonicParsing="false" text="File">
             <items>
-                  <MenuItem fx:id="mnuOpen" mnemonicParsing="false" onAction="#launchOpen" text="Open" />
+                  <MenuItem fx:id="mnuLogout" mnemonicParsing="false" onAction="#launchLogout" text="Logout" />
                   <SeparatorMenuItem mnemonicParsing="false" />
               <MenuItem fx:id="mnuClose" mnemonicParsing="false" onAction="#launchClose" text="Close" />
             </items>

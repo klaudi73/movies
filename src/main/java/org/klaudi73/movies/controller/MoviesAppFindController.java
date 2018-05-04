@@ -38,7 +38,7 @@ public class MoviesAppFindController {
     private Menu mnuFile;
 
     @FXML
-    private MenuItem mnuOpen;
+    private MenuItem mnuLogout;
 
     @FXML
     private MenuItem mnuClose;
@@ -59,8 +59,11 @@ public class MoviesAppFindController {
     private MenuItem mnuFind;
 
     @FXML
-    private MenuItem mnuView1;
+    private MenuItem mnuViewPersons;
 
+    @FXML
+    private MenuItem mnuViewTitles;
+    
     @FXML
     private Menu mnuImport;
 
@@ -170,6 +173,17 @@ public class MoviesAppFindController {
     }
 
     @FXML
+    void launchLogout(ActionEvent event) throws IOException {
+    	Main.setTransferData("login", null);
+    	Parent parent = FXMLLoader.load(getClass().getResource("/org.klaudi73.movies.view/LoginView.fxml"));
+		Scene scene = new Scene(parent);
+		scene.getStylesheets().add(getClass().getResource("/application.css").toExternalForm());
+		Main.getPrimaryStage().setScene(scene);
+		Main.getPrimaryStage().setTitle("Login Movies");
+		Main.getPrimaryStage().show();
+    }
+    
+    @FXML
     void launchDelete(ActionEvent event) {
 
     }
@@ -202,7 +216,7 @@ public class MoviesAppFindController {
     	}
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "unused" })
 	@FXML
     void launchFind(MouseEvent event) {
     	
@@ -228,12 +242,18 @@ public class MoviesAppFindController {
     	List<ViewNameTitles> listNameTitles = new ArrayList<>();
     	
 		List<ViewNameTitles> titles = null;
+		boolean showPerson = false;
+		boolean showTitle = false;
 		
-		if ((!Objects.isNull(title) && (!Objects.isNull(person))) || 
+		/*if ((!Objects.isNull(title) && (!Objects.isNull(person))) || 
 				("".equals(title) && "".equals(person))) {
 			listNameTitles = moviesAppFindService.filterTitle(title, person);
-		} else if ((!Objects.isNull(title)) && (!"".equals(title))) {
+		} else */ 
+		if ((!Objects.isNull(title)) && (!"".equals(title))) {
 			listNameTitles = moviesAppFindService.filterTitle(title);
+			showTitle = true;
+			showPerson = false;
+			/*
 			for (ViewNameTitles viewNameTitles : listNameTitles) {
 				String nConst = viewNameTitles.getNconst();
 				queryPerson = session.createQuery("FROM ViewPerson vp WHERE vp.nConst = :nConst");
@@ -252,9 +272,12 @@ public class MoviesAppFindController {
 						listPerson.add(viewPerson);
 					}
 				}
-			} 
+			} */ 
 		} else if (!Objects.isNull(person) && (!"".equals(person))){
 			listPerson = moviesAppFindService.filterPerson(person);
+			showPerson = true;
+			showTitle = false;
+			/*
 			for (ViewPerson viewPerson : listPerson) {
 				String nConst = viewPerson.getnConst();
 				queryTitle = session.createQuery("FROM NameToTitle ntt WHERE ntt.nConst = :nConst");
@@ -273,21 +296,43 @@ public class MoviesAppFindController {
 						listNameTitles.add(nameToTitle);
 					}
 				}
-			} 
+			}*/ 
 		}
-		dataPersons = FXCollections.observableArrayList(listPerson);
-		tblName.setItems(null);
-		tblName.setItems(dataPersons);
-		
-		dataTitles = FXCollections.observableArrayList(listNameTitles);
-    	tblTitle.setItems(null);
-		tblTitle.setItems(dataTitles);
+		if (showPerson) {
+			dataPersons = FXCollections.observableArrayList(listPerson);
+			tblName.setItems(null);
+			tblName.setItems(dataPersons);
+		}
+		if (showTitle) {
+			dataTitles = FXCollections.observableArrayList(listNameTitles);
+	    	tblTitle.setItems(null);
+			tblTitle.setItems(dataTitles);
+		}
 		trx.commit();
 		session.close();
-	
 		scene.setCursor(Cursor.DEFAULT);
     }
 
+    @FXML
+    void launchViewPersons(ActionEvent event) throws IOException {
+    	Main.setTransferData("viewType", "persons");
+    	Parent parent = FXMLLoader.load(getClass().getResource("/org.klaudi73.movies.view/MoviesAppView_View.fxml"));
+		Scene scene = new Scene(parent);
+		Main.getPrimaryStage().setTitle("Movies Application - View Persons");
+		Main.getPrimaryStage().show();
+		Main.getPrimaryStage().setScene(scene);
+    }
+
+    @FXML
+    void launchViewTitles(ActionEvent event) throws IOException {
+    	Main.setTransferData("viewType", "titles");
+    	Parent parent = FXMLLoader.load(getClass().getResource("/org.klaudi73.movies.view/MoviesAppView_View.fxml"));
+		Scene scene = new Scene(parent);
+		Main.getPrimaryStage().setTitle("Movies Application - View Titles");
+		Main.getPrimaryStage().show();
+		Main.getPrimaryStage().setScene(scene);
+    }
+    
     @FXML
     void launchImportFromIMDB(ActionEvent event) {
     	ShowInformation.showImportFromIMDB();
