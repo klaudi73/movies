@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "persons")
-public class Persons {
+@Table(name = "persons_priv")
+public class PersonsPriv {
 	
 	@Id
 	@Column(name = "id")
@@ -37,15 +37,15 @@ public class Persons {
 	@Column(name = "description", length = 1000)
 	private String description;
 
-	public Persons() {
+	public PersonsPriv() {
 		super();
 	}
 
-	public Persons(String nconst, String primaryName, Long birthYear, Long deathYear, Long idLogin, Long rating,
+	public PersonsPriv(String nconst, String name, Long birthYear, Long deathYear, Long idLogin, Long rating,
 			String description) {
 		super();
 		this.nconst = nconst;
-		this.name = primaryName;
+		this.name = name;
 		this.birthYear = birthYear;
 		this.deathYear = deathYear;
 		this.idLogin = idLogin;
@@ -53,18 +53,6 @@ public class Persons {
 		this.description = description;
 	}
 
-	public Persons(Long id, String nconst, String primaryName, Long birthYear, Long deathYear, Long idLogin,
-			Long rating, String description) {
-		super();
-		this.id = id;
-		this.nconst = nconst;
-		this.name = primaryName;
-		this.birthYear = birthYear;
-		this.deathYear = deathYear;
-		this.idLogin = idLogin;
-		this.rating = rating;
-		this.description = description;
-	}
 
 	public Long getId() {
 		return id;
@@ -82,12 +70,12 @@ public class Persons {
 		this.nconst = nconst;
 	}
 
-	public String getPrimaryName() {
+	public String getName() {
 		return name;
 	}
 
-	public void setPrimaryName(String primaryName) {
-		this.name = primaryName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Long getBirthYear() {
@@ -153,7 +141,7 @@ public class Persons {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Persons other = (Persons) obj;
+		PersonsPriv other = (PersonsPriv) obj;
 		if (birthYear == null) {
 			if (other.birthYear != null)
 				return false;
@@ -199,7 +187,7 @@ public class Persons {
 
 	@Override
 	public String toString() {
-		return "Persons [id=" + id + ", nconst=" + nconst + ", primaryName=" + name + ", birthYear=" + birthYear
+		return "Persons [id=" + id + ", nconst=" + nconst + ", name=" + name + ", birthYear=" + birthYear
 				+ ", deathYear=" + deathYear + ", idLogin=" + idLogin + ", rating=" + rating + ", description="
 				+ description + "]";
 	}

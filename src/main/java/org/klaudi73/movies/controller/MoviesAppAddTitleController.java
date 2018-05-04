@@ -49,12 +49,16 @@ public class MoviesAppAddTitleController {
 
     @FXML
     private Menu mnuView;
-
+    
     @FXML
     private MenuItem mnuFind;
 
     @FXML
-    private MenuItem mnuView1;
+    private MenuItem mnuViewPersons;
+
+    @FXML
+    private MenuItem mnuViewTitles;
+
 
     @FXML
     private Menu mnuImport;
@@ -172,13 +176,26 @@ public class MoviesAppAddTitleController {
     
     @FXML
     void launchAddTitle(MouseEvent event) {
+    	MoviesAppFindService moviesAppFindService = new MoviesAppFindService();
     	titlesPrivAdd.setIdLogin((Long)(Main.getTransferData("login")));
     	titlesPrivAdd.setDescription(taDescription.getText());
     	titlesPrivAdd.setRating(Long.valueOf(tfOcena.getText()));
     	titlesPrivAdd.setViewed(rdViewed.isSelected());
     	titlesPrivAdd.setToView(rdNotViewed.isSelected());
-    	AddTitlePrivService.addTitlePriv(titlesPrivAdd);
-    	ShowInformation.showDodanoTytulDoBazy();
+    	if (moviesAppFindService.existTitlePriv(titlesPrivAdd)) {
+    		Boolean decyzja = ShowInformation.showPodanyTytulJuzIstnieje(titlesPrivAdd.getName());
+    		if (decyzja) {
+    			titlesPrivAdd.setId(AddTitlePrivService.getTitlePrivId(titlesPrivAdd));
+    			System.out.println("\n" + titlesPrivAdd + "\n");
+    			AddTitlePrivService.updateTitlePriv(titlesPrivAdd);
+    			ShowInformation.showZmodyfikowanoTytulWBazie();
+    		} else {
+    			//do nothing
+    		}
+    	} else {
+    		AddTitlePrivService.addTitlePriv(titlesPrivAdd);
+    		ShowInformation.showDodanoTytulDoBazy();
+    	}
     }
 
     @FXML
@@ -220,9 +237,25 @@ public class MoviesAppAddTitleController {
     }
 
     @FXML
-    void launchView(ActionEvent event) {
-
+    void launchViewPersons(ActionEvent event) throws IOException {
+    	Main.setTransferData("viewType", "persons");
+    	Parent parent = FXMLLoader.load(getClass().getResource("/org.klaudi73.movies.view/MoviesAppView_View.fxml"));
+		Scene scene = new Scene(parent);
+		Main.getPrimaryStage().setTitle("Movies Application - View Persons");
+		Main.getPrimaryStage().show();
+		Main.getPrimaryStage().setScene(scene);
     }
+
+    @FXML
+    void launchViewTitles(ActionEvent event) throws IOException {
+    	Main.setTransferData("viewType", "titles");
+    	Parent parent = FXMLLoader.load(getClass().getResource("/org.klaudi73.movies.view/MoviesAppView_View.fxml"));
+		Scene scene = new Scene(parent);
+		Main.getPrimaryStage().setTitle("Movies Application - View Titles");
+		Main.getPrimaryStage().show();
+		Main.getPrimaryStage().setScene(scene);
+    }
+    
     
     private void setValues() {
     	MoviesAppFindService moviesAppFindService = new MoviesAppFindService();

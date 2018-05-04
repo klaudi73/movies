@@ -1,7 +1,11 @@
 package org.klaudi73.movies.util;
 
+import java.util.Optional;
+
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.util.converter.ShortStringConverter;
+import javafx.scene.control.ButtonType;
 
 public class ShowInformation {
 	
@@ -31,12 +35,46 @@ public class ShowInformation {
 		info.show();
 	}
 	
+	public static Boolean showPodanaOsobaJuzIstnieje(String name) {
+		Alert decision = new Alert(AlertType.CONFIRMATION);
+		decision.setTitle("Potwierdzenie zmiany danych osoby");
+		decision.setHeaderText("Osoba " + name + " istnieje w bazie.");
+		decision.setContentText("Czy na pewno zmodyfikować?");
+		Optional<ButtonType> result = decision.showAndWait();
+		if (result.get() == ButtonType.OK){
+		    return true;
+		} else {
+		    return false;
+		}
+	}
+	
 	static public void showDodanoTytulDoBazy() {
 		Alert info = new Alert(AlertType.INFORMATION);
 		info.setTitle("Informacja");
 		info.setHeaderText("Dodano Tytuł do bazy.");
 		info.setContentText("Dodano Tytuł do bazy.");
 		info.show();
+	}
+	
+	public static void showZmodyfikowanoTytulWBazie() {
+		Alert info = new Alert(AlertType.INFORMATION);
+		info.setTitle("Informacja");
+		info.setHeaderText("Zmodyfikowano Tytuł w bazie.");
+		info.setContentText("Zmodyfikowano Tytuł w bazie.");
+		info.show();
+	}
+	
+	public static Boolean showPodanyTytulJuzIstnieje(String name) {
+		Alert decision = new Alert(AlertType.CONFIRMATION);
+		decision.setTitle("Potwierdzenie zmiany tytułu");
+		decision.setHeaderText("Tytuł " + name + " istnieje w bazie.");
+		decision.setContentText("Czy na pewno zmodyfikować?");
+		Optional<ButtonType> result = decision.showAndWait();
+		if (result.get() == ButtonType.OK){
+		    return true;
+		} else {
+		    return false;
+		}
 	}
 	
 	static public void showError(Exception e) {

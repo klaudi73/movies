@@ -33,7 +33,12 @@
             <Menu fx:id="mnuView" mnemonicParsing="false" text="View">
               <items>
                   <MenuItem fx:id="mnuFind" mnemonicParsing="false" onAction="#launchFind" text="Find" />
-                <MenuItem fx:id="mnuView1" mnemonicParsing="false" onAction="#launchView" text="View" />
+                  <Menu mnemonicParsing="false" text="View">
+                     <items>
+                        <MenuItem fx:id="mnuViewPersons" mnemonicParsing="false" onAction="#launchViewPersons" text="View Persons" />
+                        <MenuItem fx:id="mnuViewTitles" mnemonicParsing="false" onAction="#launchViewTitles" text="View Titles" />
+                     </items>
+                  </Menu>
               </items>
             </Menu>
             <Menu fx:id="mnuImport" mnemonicParsing="false" text="Import">

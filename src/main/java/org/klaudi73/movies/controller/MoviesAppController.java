@@ -43,7 +43,6 @@ public class MoviesAppController {
     @FXML
     private MenuItem mnuViewTitles;
 
-
     @FXML
     private MenuItem mnuFind;
 
@@ -68,13 +67,23 @@ public class MoviesAppController {
     }
 
     @FXML
-    void launchViewPersons(ActionEvent event) {
-
+    void launchViewPersons(ActionEvent event) throws IOException {
+    	Main.setTransferData("viewType", "persons");
+    	Parent parent = FXMLLoader.load(getClass().getResource("/org.klaudi73.movies.view/MoviesAppView_View.fxml"));
+		Scene scene = new Scene(parent);
+		Main.getPrimaryStage().setTitle("Movies Application - View Persons");
+		Main.getPrimaryStage().show();
+		Main.getPrimaryStage().setScene(scene);
     }
 
     @FXML
-    void launchViewTitles(ActionEvent event) {
-
+    void launchViewTitles(ActionEvent event) throws IOException {
+    	Main.setTransferData("viewType", "titles");
+    	Parent parent = FXMLLoader.load(getClass().getResource("/org.klaudi73.movies.view/MoviesAppView_View.fxml"));
+		Scene scene = new Scene(parent);
+		Main.getPrimaryStage().setTitle("Movies Application - View Titles");
+		Main.getPrimaryStage().show();
+		Main.getPrimaryStage().setScene(scene);
     }
     
     @FXML

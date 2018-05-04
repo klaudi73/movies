@@ -1,10 +1,10 @@
 package org.klaudi73.movies.service;
 
-import org.klaudi73.movies.model.Persons;
+import org.klaudi73.movies.model.PersonsPriv;
 
 public class DataToTransferBtweenScenes {
 	private String data;
-	private Persons person;
+	private PersonsPriv person;
 	private Long loginId;
 	
 	public DataToTransferBtweenScenes() {
@@ -16,7 +16,7 @@ public class DataToTransferBtweenScenes {
 		this.data = data;
 	}
 	
-	public DataToTransferBtweenScenes(Persons person) {
+	public DataToTransferBtweenScenes(PersonsPriv person) {
 		super();
 		this.person = person;
 	}
@@ -34,11 +34,11 @@ public class DataToTransferBtweenScenes {
 		this.data = data;
 	}
 	
-	public Persons getPerson() {
+	public PersonsPriv getPerson() {
 		return person;
 	}
 
-	public void setPerson(Persons person) {
+	public void setPerson(PersonsPriv person) {
 		this.person = person;
 	}
 

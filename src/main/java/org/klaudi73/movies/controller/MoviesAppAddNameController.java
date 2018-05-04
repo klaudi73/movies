@@ -8,7 +8,7 @@ import java.util.Objects;
 import org.klaudi73.movies.Main;
 import org.klaudi73.movies.model.NameToProfession;
 import org.klaudi73.movies.model.NameToTitle;
-import org.klaudi73.movies.model.Persons;
+import org.klaudi73.movies.model.PersonsPriv;
 import org.klaudi73.movies.model.Profession;
 import org.klaudi73.movies.model.Titles;
 import org.klaudi73.movies.model.ViewPerson;
@@ -210,7 +210,7 @@ public class MoviesAppAddNameController {
     	ViewPerson person = persons.get(0);
     	if (!Objects.isNull(person.getName())) {
     		tfPerson.setText(person.getName());
-    		personsAdd.setPrimaryName(person.getName());
+    		personsAdd.setName(person.getName());
     	}
     	if (!Objects.isNull(person.getBirthYear())) {
     		tfBirthYear.setText(person.getBirthYear().toString());
@@ -262,12 +262,11 @@ public class MoviesAppAddNameController {
     }
     
     public static String nConst = "";
-    public static Persons personsAdd = new Persons();
+    public static PersonsPriv personsAdd = new PersonsPriv();
     public static List<TextField> listTextField = new ArrayList<>();
     
     public void initialize() {
     	nConst = (String) Main.getTransferData("nConst");
-    	System.out.println("To jest po pokazaniu okna Add Name, " + nConst);
     	setValues();
     } 
 }

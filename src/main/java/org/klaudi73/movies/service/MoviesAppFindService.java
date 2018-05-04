@@ -11,8 +11,10 @@ import org.klaudi73.movies.model.ViewTitle;
 import org.klaudi73.movies.model.NameToProfession;
 import org.klaudi73.movies.model.NameToTitle;
 import org.klaudi73.movies.model.Names;
+import org.klaudi73.movies.model.PersonsPriv;
 import org.klaudi73.movies.model.Profession;
 import org.klaudi73.movies.model.Titles;
+import org.klaudi73.movies.model.TitlesPriv;
 import org.klaudi73.movies.model.ViewNameTitles;
 import org.klaudi73.movies.service.MoviesAppFindService;
 import org.klaudi73.movies.util.HibernateUtil;
@@ -231,6 +233,51 @@ public class MoviesAppFindService {
 		trx.commit();
 		session.close();
 		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<PersonsPriv> filterPersonsByLoginId(Long idLogin) {
+		Session session = HibernateUtil.getSessionFactory().openSession(); 
+		Transaction trx = session.beginTransaction();
+    	
+		Query queryPerson = session.createQuery("FROM PersonsPriv WHERE idLogin = :idLogin");
+		queryPerson.setLong("idLogin", idLogin);
+		List<PersonsPriv> personsPrivs = queryPerson.list();
+		trx.commit();
+		session.close();
+		return personsPrivs;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<TitlesPriv> filterTitlesByLoginId(Long idLogin) {
+
+		Session session = HibernateUtil.getSessionFactory().openSession(); 
+		Transaction trx = session.beginTransaction();
+    	
+		Query queryTitle = session.createQuery("FROM TitlesPriv WHERE idLogin = :idLogin");
+		queryTitle.setLong("idLogin", idLogin);
+		List<TitlesPriv> titlesPrivs = queryTitle.list();
+		trx.commit();
+		session.close();
+		return titlesPrivs;
+	}
+
+	@SuppressWarnings("unchecked")
+	public boolean existTitlePriv(TitlesPriv titlesPrivAdd) {
+		Session session = HibernateUtil.getSessionFactory().openSession(); 
+		Transaction trx = session.beginTransaction();
+    	
+		Query queryTitle = session.createQuery("FROM TitlesPriv WHERE tConst = :tConst AND idLogin = :idLogin");
+		queryTitle.setString("tConst", titlesPrivAdd.getTconst());
+		queryTitle.setLong("idLogin", titlesPrivAdd.getIdLogin());
+		List<TitlesPriv> titlesPrivs = queryTitle.list();
+		trx.commit();
+		session.close();
+		if (titlesPrivs.size() > 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 }

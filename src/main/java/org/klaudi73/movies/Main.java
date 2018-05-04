@@ -3,7 +3,7 @@ package org.klaudi73.movies;
 import java.util.HashMap;
 import java.util.Objects;
 
-import org.klaudi73.movies.model.Persons;
+import org.klaudi73.movies.model.PersonsPriv;
 import org.klaudi73.movies.service.DataToTransferBtweenScenes;
 import org.klaudi73.movies.util.ShowInformation;
 
@@ -16,7 +16,7 @@ import javafx.scene.Scene;
 public class Main extends Application {
 	
 	private static Stage primaryStage;
-	private static DataToTransferBtweenScenes dataToTransferBtweenScenes = new DataToTransferBtweenScenes();
+	//private static DataToTransferBtweenScenes dataToTransferBtweenScenes = new DataToTransferBtweenScenes();
 	private static HashMap<String, Object> transferData = new HashMap<>();
 	
 	public static void setTransferData(String name, Object value) {
@@ -27,7 +27,8 @@ public class Main extends Application {
 		return transferData.get(name);
 	}
 	
-	public static DataToTransferBtweenScenes getDataToTransferBtweenScenes() {
+	/*
+	 public static DataToTransferBtweenScenes getDataToTransferBtweenScenes() {
 		return dataToTransferBtweenScenes;
 	}
 
@@ -39,10 +40,10 @@ public class Main extends Application {
 		Main.dataToTransferBtweenScenes.setLoginId(loginId);
 	}
 	
-	public static void setDataToTransferBtweenScenes(Persons person) {
+	public static void setDataToTransferBtweenScenes(PersonsPriv person) {
 		Main.dataToTransferBtweenScenes.setPerson(person);
 	}
-	
+	*/
 	public static Stage getPrimaryStage() {
 		if (Objects.isNull(primaryStage)) {
 			setPrimaryStage(primaryStage);

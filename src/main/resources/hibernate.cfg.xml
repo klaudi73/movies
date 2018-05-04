@@ -20,7 +20,7 @@
 		<mapping class="org.klaudi73.movies.model.Names" />
 		<mapping class="org.klaudi73.movies.model.NameToTitle" />
 		<mapping class="org.klaudi73.movies.model.NameToProfession" />
-		<mapping class="org.klaudi73.movies.model.Persons" />
+		<mapping class="org.klaudi73.movies.model.PersonsPriv" />
 		<mapping class="org.klaudi73.movies.model.Profession" />
 		<mapping class="org.klaudi73.movies.model.Titles" />
 		<mapping class="org.klaudi73.movies.model.TitlesPriv" />

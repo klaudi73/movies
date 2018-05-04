@@ -11,7 +11,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.klaudi73.movies.controller.MoviesAppFindController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.klaudi73.movies.controller.MoviesAppViewController">
    <children>
       <MenuBar layoutX="10.0" layoutY="22.0" prefHeight="32.0" prefWidth="710.0">
         <menus>
@@ -55,19 +55,21 @@
       <TextField fx:id="tfTitle" layoutX="365.0" layoutY="80.0" promptText="Film/Serial" />
       <Label alignment="CENTER_RIGHT" layoutX="287.0" layoutY="85.0" text="Film/Serial:" />
       <Button fx:id="btnFind" layoutX="600.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#launchFind" prefHeight="31.0" prefWidth="82.0" text="Szukaj" />
-      <TableView fx:id="tblName" layoutX="40.0" layoutY="120.0" onMouseClicked="#launchNameSelected" prefHeight="200.0" prefWidth="720.0">
+      <TableView fx:id="tblName" layoutX="40.0" layoutY="119.0" onMouseClicked="#launchNameSelected" prefHeight="409.0" prefWidth="720.0" visible="false">
         <columns>
-          <TableColumn fx:id="colName" prefWidth="348.0" text="Name" />
-          <TableColumn fx:id="colBirthYear" prefWidth="191.0" text="Birth Year" />
-            <TableColumn fx:id="colDeathYear" prefWidth="180.0" text="Death Year" />
+            <TableColumn fx:id="colName" prefWidth="447.0" text="Name" />
+          <TableColumn fx:id="colBirthYear" prefWidth="106.0" text="Birth Year" />
+            <TableColumn fx:id="colDeathYear" prefWidth="94.0" text="Death Year" />
+            <TableColumn fx:id="colRatingPerson" prefWidth="72.0" text="Rating" />
         </columns>
       </TableView>
-      <TableView fx:id="tblTitle" layoutX="40.0" layoutY="330.0" onMouseClicked="#launchTitleSelected" prefHeight="200.0" prefWidth="720.0">
+      <TableView fx:id="tblTitle" focusTraversable="false" layoutX="40.0" layoutY="119.0" onMouseClicked="#launchTitleSelected" prefHeight="409.0" prefWidth="720.0">
          <columns>
-            <TableColumn fx:id="collTitle" prefWidth="308.0" text="Title" />
-            <TableColumn fx:id="colStartYear" minWidth="4.0" prefWidth="79.0" text="Start Year" />
-            <TableColumn fx:id="colType" prefWidth="75.0" text="Type" />
-            <TableColumn fx:id="colGenres" prefWidth="257.0" text="Genres" />
+            <TableColumn fx:id="colTitle" prefWidth="257.0" text="Title" />
+            <TableColumn fx:id="colStartYear" minWidth="4.0" prefWidth="86.0" text="Start Year" />
+            <TableColumn fx:id="colType" prefWidth="97.0" text="Type" />
+            <TableColumn fx:id="colGenres" prefWidth="208.0" text="Genres" />
+            <TableColumn fx:id="colRatingTitle" prefWidth="71.0" text="Rating" />
          </columns>
       </TableView>
       <Button fx:id="btnAddName" layoutX="76.0" layoutY="546.0" mnemonicParsing="false" onMouseClicked="#launchAddName" text="Dodaj Osobę" />

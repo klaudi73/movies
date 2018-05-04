@@ -19,7 +19,7 @@ public class TitlesPriv {
 	@Column(name = "tconst")
 	private String tconst;
 	
-	@Column(name = "name")
+	@Column(name = "name", length = 1000)
 	private String name;
 	
 	@Column(name = "start_year")
@@ -56,8 +56,9 @@ public class TitlesPriv {
 		super();
 	}
 
-	public TitlesPriv(String tconst, String name, Long startYear, Long endYear, String titleType, Long runtimeMinutes,
-			String genres, Long idLogin, Long rating, String description, Boolean viewed, Boolean toView) {
+	public TitlesPriv(String tconst, String name, Long startYear, Long endYear, String titleType,
+			Long runtimeMinutes, String genres, Long idLogin, Long rating, String description, Boolean viewed,
+			Boolean toView) {
 		super();
 		this.tconst = tconst;
 		this.name = name;
