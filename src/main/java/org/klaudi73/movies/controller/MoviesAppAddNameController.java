@@ -35,7 +35,7 @@ public class MoviesAppAddNameController {
     private Menu mnuFile;
 
     @FXML
-    private MenuItem mnuOpen;
+    private MenuItem mnuLogout;
 
     @FXML
     private MenuItem mnuClose;
@@ -155,6 +155,27 @@ public class MoviesAppAddNameController {
     void launchAdd(ActionEvent event) {
 
     }
+    
+    @FXML
+    void launchViewPersons(ActionEvent event) throws IOException {
+    	Main.setTransferData("viewType", "persons");
+    	Parent parent = FXMLLoader.load(getClass().getResource("/org.klaudi73.movies.view/MoviesAppView_View.fxml"));
+		Scene scene = new Scene(parent);
+		Main.getPrimaryStage().setTitle("Movies Application - View Persons");
+		Main.getPrimaryStage().show();
+		Main.getPrimaryStage().setScene(scene);
+    }
+
+    @FXML
+    void launchViewTitles(ActionEvent event) throws IOException {
+    	Main.setTransferData("viewType", "titles");
+    	Parent parent = FXMLLoader.load(getClass().getResource("/org.klaudi73.movies.view/MoviesAppView_View.fxml"));
+		Scene scene = new Scene(parent);
+		Main.getPrimaryStage().setTitle("Movies Application - View Titles");
+		Main.getPrimaryStage().show();
+		Main.getPrimaryStage().setScene(scene);
+    }
+
 
     @FXML
     void launchAddPerson(MouseEvent event) {
@@ -189,8 +210,12 @@ public class MoviesAppAddNameController {
     }
 
     @FXML
-    void launchFind(ActionEvent event) {
-    	
+    void launchFind(ActionEvent event) throws IOException {
+    	Parent parent = FXMLLoader.load(getClass().getResource("/org.klaudi73.movies.view/MoviesAppView_Find.fxml"));
+		Scene scene = new Scene(parent);
+		Main.getPrimaryStage().setTitle("Movies Application - Find");
+		Main.getPrimaryStage().show();
+		Main.getPrimaryStage().setScene(scene);
     }
 
     @FXML
@@ -208,8 +233,14 @@ public class MoviesAppAddNameController {
     }
 
     @FXML
-    void launchOpen(ActionEvent event) {
-
+    void launchLogout(ActionEvent event) throws IOException {
+    	Main.setTransferData("login", null);
+    	Parent parent = FXMLLoader.load(getClass().getResource("/org.klaudi73.movies.view/LoginView.fxml"));
+		Scene scene = new Scene(parent);
+		scene.getStylesheets().add(getClass().getResource("/application.css").toExternalForm());
+		Main.getPrimaryStage().setScene(scene);
+		Main.getPrimaryStage().setTitle("Login Movies");
+		Main.getPrimaryStage().show();
     }
 
     @FXML

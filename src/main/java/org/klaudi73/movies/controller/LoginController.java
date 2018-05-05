@@ -6,6 +6,8 @@ import org.klaudi73.movies.Main;
 import org.klaudi73.movies.service.LoginService;
 import org.klaudi73.movies.util.ShowInformation;
 
+import antlr.debug.Event;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -63,7 +65,23 @@ public class LoginController {
     	pfPass.setVisible(false);
     }
 
-  
+    @FXML
+    void launchLogin(ActionEvent event) throws IOException {
+    	String login = tfLogin.getText();
+    	String password = pfPass.getText();
+    	boolean isLogged = loginService.login(login, password);
+    	if (isLogged) {
+    		Parent parent = FXMLLoader.load(getClass().getResource("/org.klaudi73.movies.view/MoviesAppView.fxml"));
+    		Scene scene = new Scene(parent);
+    		Main.getPrimaryStage().setTitle("Movies Application");
+			Main.getPrimaryStage().show();
+    		Main.getPrimaryStage().setScene(scene);
+    		
+    	} else {
+    		ShowInformation.showError("login");
+    	}
+    }
+    
     @FXML
     void login(MouseEvent event) throws IOException {
     	

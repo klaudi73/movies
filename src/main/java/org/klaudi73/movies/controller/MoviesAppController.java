@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.klaudi73.movies.Main;
+//import org.klaudi73.movies.util.ImportFromIMDB;
 import org.klaudi73.movies.util.ShowInformation;
 
 import javafx.event.ActionEvent;
@@ -116,6 +117,7 @@ public class MoviesAppController {
     void launchImportFromIMDB(ActionEvent event) throws FileNotFoundException {
     	//ImportFromIMDB.importTitles();
     	//ImportFromIMDB.importNames();
+    	//ImportFromIMDB.importPrincipals();
     	ShowInformation.showImportFromIMDB();
     }
 

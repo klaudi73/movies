@@ -344,8 +344,8 @@ public class MoviesAppFindController {
     }
 
     @FXML
-    void launchView(ActionEvent event) {
-
+    void launchView(ActionEvent event) throws IOException {
+    	
     }
     
     private void fillPersonData() {

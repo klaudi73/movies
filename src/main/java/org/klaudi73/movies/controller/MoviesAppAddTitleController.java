@@ -33,7 +33,7 @@ public class MoviesAppAddTitleController {
     private Menu mnuFile;
 
     @FXML
-    private MenuItem mnuOpen;
+    private MenuItem mnuLogout;
 
     @FXML
     private MenuItem mnuClose;
@@ -232,10 +232,16 @@ public class MoviesAppAddTitleController {
     }
 
     @FXML
-    void launchOpen(ActionEvent event) {
-
+    void launchLogout(ActionEvent event) throws IOException {
+    	Main.setTransferData("login", null);
+    	Parent parent = FXMLLoader.load(getClass().getResource("/org.klaudi73.movies.view/LoginView.fxml"));
+		Scene scene = new Scene(parent);
+		scene.getStylesheets().add(getClass().getResource("/application.css").toExternalForm());
+		Main.getPrimaryStage().setScene(scene);
+		Main.getPrimaryStage().setTitle("Login Movies");
+		Main.getPrimaryStage().show();
     }
-
+    
     @FXML
     void launchViewPersons(ActionEvent event) throws IOException {
     	Main.setTransferData("viewType", "persons");

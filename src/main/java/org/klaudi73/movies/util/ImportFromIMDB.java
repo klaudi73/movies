@@ -14,6 +14,7 @@ import org.klaudi73.movies.model.NameToProfession;
 import org.klaudi73.movies.model.NameToTitle;
 import org.klaudi73.movies.model.Names;
 import org.klaudi73.movies.model.Profession;
+import org.klaudi73.movies.model.TitlePrincipalsIMDB;
 import org.klaudi73.movies.model.Titles;
 
 public class ImportFromIMDB {
@@ -300,6 +301,119 @@ public class ImportFromIMDB {
 				endTime = System.currentTimeMillis();
 				System.out.println("nowTime = " + endTime);
 				System.out.println("Time elapsed = " + ((endTime-startTime)/1000L) + " [s]");
+			}
+		}
+		sc1.close();
+		trx.commit();
+		session.close();
+		
+		System.out.println("counter = " + counter.toString());
+		System.out.println("counterBig = " + counterBig.toString());
+		System.out.println("countRecordsCommitedInSession = " + countRecordsCommitedInSession);
+		System.out.println("startTime = " + startTime);
+		endTime = System.currentTimeMillis();
+		System.out.println("endTime = " + endTime);
+		System.out.println("Time elapsed = " + ((endTime-startTime)/1000L) + " [s]");
+	}
+	
+	@SuppressWarnings({ "null", "resource", "unchecked" })
+	public static void importPrincipals() throws FileNotFoundException {
+		//tconst	ordering	nconst	category	job	characters
+		int i=0;
+		
+		Session session = null;
+		Transaction trx = null;
+		
+		Long startTime = System.currentTimeMillis();
+		Long endTime = System.currentTimeMillis();
+		
+		System.out.println(System.currentTimeMillis());
+		System.out.println("\nCzytamy z pliku title.principals.tsv\n");
+		//File titlesFile = new File("/movies/src/main/resources/files/name.basics.tsv");
+		//File namesFile = new File("src\\main\\java\\org\\klaudi73\\movies\\files\\title.principals.tsv");
+		File principalsFile = new File("..\\IMDB\\title.principals.tsv");
+		///movies/src/main/java/org/klaudi73/movies/files/name.basics.tsv
+		
+		Scanner sc1 = new Scanner(principalsFile, "UTF-8");
+		Long counter = 0L;
+		int countCommitedRecords = 28054271;
+		int countRecordsToCommit = 10000000;
+		int countRecordsCommitedInSession = 0;
+		
+		Long commitCount = 100000L;
+		Long counterBig = (Long)(countCommitedRecords / commitCount);
+		String tmpString = new String();
+		
+		while(sc1.hasNext()) {
+			tmpString = sc1.nextLine();
+			i++;
+			if (i%1000 == 0) {
+				System.out.println(i);
+			}
+		}
+		Double liczbaRekordow = Double.valueOf(Long.toString((long)(i)));
+		sc1 = new Scanner(principalsFile, "UTF-8");
+		
+		if (countCommitedRecords > 0) {
+			for( i=0; i < countCommitedRecords; i++) {
+				tmpString = sc1.nextLine();
+			}
+		}
+		System.out.println(i);
+		
+		Double procent = 0.0D;
+		Long procentLong = 0L;
+		String line = new String();
+		String listSplitted[] = new String[5];
+		//String listFields[] = new String[5];
+		//String listaProfession[] = new String[1];
+		
+		session = HibernateUtil.getSessionFactory().openSession();
+		while(sc1.hasNextLine()) {
+			if (counter == 0L) {
+				trx = session.beginTransaction();
+			}
+			counter++;
+			if (countRecordsCommitedInSession >= countRecordsToCommit) {
+				break;
+			}
+			//System.out.println(((counterBig*commitCount + counter)) + " ; " + (((counterBig*commitCount + counter) / liczbaRekordow) * 100L));
+			
+			line = sc1.nextLine();
+			listSplitted = line.split("\t");
+			for (i=0; i<5; i++) {
+				listSplitted[i] = listSplitted[i].trim();
+				if ("\\N".equals(listSplitted[i])) {
+					listSplitted[i] = "";
+				}
+				if ("null".equals(listSplitted[i])) {
+					listSplitted[i] = "";
+				}
+			}
+			if (!"tconst".equals(listSplitted[0])) {
+				TitlePrincipalsIMDB titlePrincipalsIMDB = 
+						new TitlePrincipalsIMDB(
+								listSplitted[0],
+								Long.valueOf(listSplitted[1]),
+								listSplitted[2],
+								listSplitted[3],
+								listSplitted[4]);
+				session.save(titlePrincipalsIMDB);
+				countRecordsCommitedInSession++;
+				if (counter >= commitCount) {
+					trx.commit();
+					counter = 0L;
+					counterBig++;
+					procentLong = counterBig * commitCount + counter;
+					procent = (Double.valueOf(procentLong.toString()) / liczbaRekordow) * 100D;
+					System.out.println("counterBig = " + counterBig.toString());
+					System.out.println("countRecordsCommitedInSession = " + countRecordsCommitedInSession);
+					System.out.println(procentLong.toString() + " ; " + procent.toString());
+					System.out.println("startTime = " + startTime);
+					endTime = System.currentTimeMillis();
+					System.out.println("nowTime = " + endTime);
+					System.out.println("Time elapsed = " + ((endTime-startTime)/1000L) + " [s]");
+				}
 			}
 		}
 		sc1.close();

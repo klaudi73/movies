@@ -82,14 +82,14 @@
       <TextArea fx:id="taDescription" layoutX="121.0" layoutY="380.0" prefHeight="115.0" prefWidth="646.0" promptText="Opis Tytułu" />
       <Button fx:id="btnAddTitle" layoutX="120.0" layoutY="551.0" mnemonicParsing="false" onMouseClicked="#launchAddTitle" text="Dodaj Tytuł" />
       <Button fx:id="btnHome" layoutX="691.0" layoutY="551.0" mnemonicParsing="false" onMouseClicked="#launchHome" text="Home" />
-      <Separator layoutX="34.0" layoutY="185.0" prefHeight="3.0" prefWidth="752.0" />
-      <Separator layoutX="34.0" layoutY="128.0" prefHeight="3.0" prefWidth="752.0" />
-      <Separator layoutX="34.0" layoutY="306.0" prefHeight="3.0" prefWidth="752.0" />
       <RadioButton fx:id="rdViewed" layoutX="345.0" layoutY="340.0" mnemonicParsing="false" onMouseClicked="#launchViewed" selected="true" text="Obejrzany">
          <toggleGroup>
             <ToggleGroup fx:id="Obejrzane" />
          </toggleGroup>
       </RadioButton>
       <RadioButton fx:id="rdNotViewed" layoutX="473.0" layoutY="341.0" mnemonicParsing="false" onMouseClicked="#launchNotViewed" text="Do Obejrzenia" toggleGroup="$Obejrzane" />
+      <Separator layoutX="34.0" layoutY="185.0" prefHeight="3.0" prefWidth="752.0" />
+      <Separator layoutX="34.0" layoutY="128.0" prefHeight="3.0" prefWidth="752.0" />
+      <Separator layoutX="34.0" layoutY="306.0" prefHeight="3.0" prefWidth="752.0" />
    </children>
 </AnchorPane>

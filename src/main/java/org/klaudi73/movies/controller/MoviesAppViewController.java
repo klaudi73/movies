@@ -36,6 +36,9 @@ public class MoviesAppViewController {
 
     @FXML
     private MenuItem mnuOpen;
+    
+    @FXML
+    private MenuItem mnuLogout;
 
     @FXML
     private MenuItem mnuClose;
@@ -56,7 +59,10 @@ public class MoviesAppViewController {
     private MenuItem mnuFind;
 
     @FXML
-    private MenuItem mnuView1;
+    private MenuItem mnuViewPersons;
+    
+    @FXML
+    private MenuItem mnuViewTitles;
 
     @FXML
     private Menu mnuImport;
@@ -187,12 +193,12 @@ public class MoviesAppViewController {
     }
 
     @FXML
-    void launchFind(MouseEvent event) throws IOException {
+    void launchFind(ActionEvent event) throws IOException {
     	Parent parent = FXMLLoader.load(getClass().getResource("/org.klaudi73.movies.view/MoviesAppView_Find.fxml"));
 		Scene scene = new Scene(parent);
 		Main.getPrimaryStage().setTitle("Movies Application - Find");
-		Main.getPrimaryStage().show();
 		Main.getPrimaryStage().setScene(scene);
+		Main.getPrimaryStage().show();
     }
 
     @FXML
@@ -208,6 +214,17 @@ public class MoviesAppViewController {
     @FXML
     void launchOpen(ActionEvent event) {
 
+    }
+    
+    @FXML
+    void launchLogout(ActionEvent event) throws IOException {
+    	Main.setTransferData("login", null);
+    	Parent parent = FXMLLoader.load(getClass().getResource("/org.klaudi73.movies.view/LoginView.fxml"));
+		Scene scene = new Scene(parent);
+		scene.getStylesheets().add(getClass().getResource("/application.css").toExternalForm());
+		Main.getPrimaryStage().setScene(scene);
+		Main.getPrimaryStage().setTitle("Login Movies");
+		Main.getPrimaryStage().show();
     }
 
     @FXML
