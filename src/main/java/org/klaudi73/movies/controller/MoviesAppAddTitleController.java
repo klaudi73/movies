@@ -204,6 +204,11 @@ public class MoviesAppAddTitleController {
     }
 
     @FXML
+    void launchOpen(ActionEvent event) {
+    	
+    }
+
+    @FXML
     void launchDelete(ActionEvent event) {
 
     }

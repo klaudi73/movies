@@ -1,0 +1,12 @@
+actor
+actress
+archive_footage
+archive_sound
+cinematographer
+composer
+director
+editor
+producer
+production_designer
+self
+writer
